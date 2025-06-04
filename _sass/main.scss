@@ -1,0 +1,54 @@
+// 此处放CSS文件
+
+.current {
+    color: green;
+  }
+
+/* 调整导航胶囊之间的距离 */
+.nav-pills .nav-link {
+  margin-right: 50px; /* 调整导航胶囊之间的距离 */
+}
+
+/* 设置所有表格单元格居中对齐 */
+table th, table td {
+  text-align: center; /* 水平居中 */
+  vertical-align: middle; /* 垂直居中 */
+}
+
+/* 导航栏常显示 */
+.navbar-fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #ccc; /* 确保背景色与导航栏一致 */
+}
+
+/* 为了避免导航栏遮挡内容，调整body的顶部内边距 */
+body {
+  padding-top: 50px; /* 根据导航栏的高度进行调整 */
+}
+
+/* 添加到你的CSS文件 */
+#myCarousel {
+  width: 100%; /* 设置轮播的宽度为100% */
+  width: 1000px; /* 设置轮播的最大宽度 */
+  height: 500px; /* 使高度自动调整 */
+  margin: auto; /* 使轮播居中 */
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5); /* 添加半透明背景 */
+  padding: 10px; /* 添加内边距 */
+}
+
+.carousel-inner .item img:hover {
+  transform: scale(1.1); /* 放大图片 */
+}
+
+/* 可选：如果需要调整导航箭头的位置 */
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none; /* 移除默认背景 */
+  width: 30px; /* 调整宽度以适应轮播的宽度 */
+}

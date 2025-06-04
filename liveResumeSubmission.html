@@ -1,0 +1,76 @@
+---
+layout: default
+title: 简历提交
+---
+
+<style>
+
+</style>
+
+<div class="container mt-5 resume-form">
+    <h2>填写简历</h2>
+    <form id="resumeForm">
+        <table>
+            <tr>
+                <td><label for="name">姓名:</label></td>
+                <td><input type="text" id="name" name="name" required></td>
+            </tr>
+            <tr>
+                <td><label for="age">年龄:</label></td>
+                <td><input type="number" id="age" name="age" min="18" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">邮箱:</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="education">学历:</label></td>
+                <td>
+                    <select id="education" name="education">
+                        <option value="highschool">高中</option>
+                        <option value="bachelor">本科</option>
+                        <option value="master">硕士</option>
+                        <option value="doctorate">博士</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="phone">电话号码:</label></td>
+                <td><input type="tel" id="phone" name="phone" required></td>
+            </tr>
+            <tr>
+                <td><label for="work-experience">工作经验:</label></td>
+                <td><textarea id="work-experience" name="work-experience" rows="4"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="awards">获奖情况:</label></td>
+                <td><textarea id="awards" name="awards" rows="4"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="button" class="btn btn-primary" onclick="submitResume()">投递</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="alertBox" class="alert-box" style="display: none;">
+    <p>简历已投递，感谢您的申请！</p>
+    <button class="btn btn-primary" onclick="closeAlert()">关闭</button>
+</div>
+
+<script>
+    function submitResume() {
+        alertBox.style.display = 'block';
+    }
+
+    function closeAlert() {
+        alertBox.style.display = 'none';
+
+        var form = document.getElementById('resumeForm');
+        if (form) {
+            form.reset();
+        }
+    }
+</script>

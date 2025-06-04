@@ -1,0 +1,143 @@
+---
+title: Home
+---
+ <!-- 首标题 -->
+<h1 class="text-center" style="white-space: nowrap;">
+    我们的<span class="text-success">责任</span>是让饮<span class="text-primary">水</span>更加<span class="text-danger">别具一格！</span>
+</h1>
+
+ <!-- 副标题 -->
+<h3 class="text-center text-muted"><span class="glyphicon glyphicon-bookmark"></span> 欢迎来到 PerfectGlassCompany 网站 !</code>
+
+</h3>
+
+ <!-- 轮播组件 -->
+<div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <a href="product/old-fashioned.html">
+                <img src="assets/css/images/B1.jpg" class="img-fluid" alt="玻璃杯1" style="width: 1000px; height: 500px;">
+            </a>
+            <div class="carousel-caption">古典杯</div>
+        </div>
+        <div class="item">
+            <a href="product/champagne-glass.html">
+                <img src="assets/css/images/B5.jpg" class="img-fluid" alt="玻璃杯2" style="width: 1000px; height: 500px;">
+            </a>
+            <div class="carousel-caption">香槟杯</div>
+        </div>
+        <div class="item">
+            <a href="product/red-wine-glass.html">
+                <img src="assets/css/images/C1.jpg" class="img-fluid" alt="玻璃杯3" style="width: 1000px; height: 500px;">
+            </a>
+            <div class="carousel-caption">红葡萄酒杯</div>
+        </div>
+        <div class="item">
+            <a href="product/highball-glass.html">
+                <img src="assets/css/images/c2.jpg" class="img-fluid" alt="玻璃杯3" style="width: 1000px; height: 500px;">
+            </a>
+            <div class="carousel-caption">海波杯</div>
+        </div>
+        <div class="item">
+            <a href="product/cocktail-glass.html"></a>
+                <img src="assets/css/images/c3.jpg" class="img-fluid" alt="玻璃杯3" style="width: 1000px; height: 500px;">
+            </a>
+            <div class="carousel-caption">鸡尾酒杯</div>
+        </div>
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+</div>
+
+ <!-- 轮播脚本 -->
+<script>
+$(function(){
+        // 初始化轮播
+        $(".start-slide").click(function(){
+            $("#myCarousel").carousel('cycle');
+        });
+        // 停止轮播
+        $(".pause-slide").click(function(){
+            $("#myCarousel").carousel('pause');
+        });
+        // 循环轮播到上一个项目
+        $(".prev-slide").click(function(){
+            $("#myCarousel").carousel('prev');
+        });
+        // 循环轮播到下一个项目
+        $(".next-slide").click(function(){
+            $("#myCarousel").carousel('next');
+        });
+        // 循环轮播到某个特定的帧
+        $(".slide-one").click(function(){
+            $("#myCarousel").carousel(0);
+        });
+        $(".slide-two").click(function(){
+            $("#myCarousel").carousel(1);
+        });
+        $(".slide-three").click(function(){
+            $("#myCarousel").carousel(2);
+        });
+    });
+</script>
+
+ <!-- 正文信息 -->
+<div class="text-center">
+    <h1 class="text-center" style="white-space: nowrap;">
+        <span class="text-danger">多种多样</span>的款式<span class="text-success">以满足您的需求！</span>
+    </h1>
+    <a href="/products.html">了解更多产品信息</a>
+    <div class="panel-body" style="padding: 30px 150px;">
+        <img src="assets/css/images/cup2.jpg" class="img-rounded" style="width: 50%; height: auto;">
+    </div>
+    <h1 class="text-center" style="white-space: nowrap;">
+        巧妙地结合<span class="text-success">现代</span><span class="text-danger">艺术！</span>
+    </h1>
+    <a href="/products.html">了解更多产品信息</a>
+    <div class="panel-body" style="padding: 30px 150px; display: flex; justify-content: space-between;">
+        <img src="assets/css/images/machine1.png" class="img-rounded" style="width: 48%; height: auto;">
+        <img src="assets/css/images/machine2.png" class="img-rounded" style="width: 48%; height: auto;">
+    </div>
+    <h1 class="text-center" style="white-space: nowrap;">
+       现代化的生产流水线
+    </h1>
+    <a href="/Story.html">了解我们的故事</a>
+
+    <div class="panel-body" style="padding: 30px 150px;">
+        <img src="assets/css/images/Page1/protect.jpg" class="img-rounded">
+    </div>
+    <h1 class="text-center" style="white-space: nowrap;">
+        向消费者提供<span class="text-success">安心</span>保障
+    </h1>
+    <a href="/Commitment.html">申请保障</a>
+</div>
+
+ <!-- 网页后缀 -->
+<div class="container">
+    <div class="jumbotron">
+        <p>PerfectGlassCompany</p>
+        <p>公司地址：云南省昆明市呈贡区万达广场</p>
+        <p>服务热线：023-88127143 400-0305-023</p>
+        <p></p>
+        <a class="btn btn-default btn-lg" href="/products.html" role="button" style="margin-right: 20px;"><span class="glyphicon glyphicon-user"></span> 产品信息</a>
+        <a class="btn btn-default btn-lg" href="/Story.html" role="button" style="margin-right: 20px;"><span class="glyphicon glyphicon-pencil"></span> 公司文化</a>
+        <a class="btn btn-default btn-lg" href="/JoinUs.html" role="button" style="margin-right: 20px;"><span class="glyphicon glyphicon-play"></span> 加入我们</a>
+        </p>
+    </div>
+ </div>

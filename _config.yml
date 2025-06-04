@@ -1,0 +1,16 @@
+# YAML文件用户设置各个界面的layout布局值
+defaults:
+  # - scope:
+  #     path: ""
+  #     type: "authors"
+  #   values:
+  #     layout: "author"
+  # - scope:
+  #     path: ""
+  #     type: "posts"
+  #   values:
+  #     layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
