@@ -1,11 +1,11 @@
-# 主要数据页索引
-- name: 古典杯
-  link: /product/old-fashioned.html
-- name: 香槟杯
-  link: /product/champagne-glass.html
-- name: 红葡萄酒杯
-  link: /product/red-wine-glass.html
-- name: 海波杯
-  link: /product/highball-glass.html
-- name: 鸡尾酒杯
-  link: /product/cocktail-glass.html
+# 茶叶产品页索引
+- name: 天山绿茶
+  link: /product/green-tea.html
+- name: 金骏眉红茶
+  link: /product/red-tea.html
+- name: 碧螺春
+  link: /product/biluochun-tea.html
+- name: 寿眉白茶
+  link: /product/white-tea.html
+- name: 陈年普洱茶
+  link: /product/pu-erh-tea.html

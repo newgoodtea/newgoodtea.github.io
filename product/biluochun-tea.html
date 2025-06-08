@@ -1,0 +1,68 @@
+---
+layout: product
+title: 碧螺春
+---
+
+<div style="display:flex;height:100%;overflow:hidden;">
+    <div style="flex:1;padding-top: 20px;margin-right: 10px;position: relative;display: flex;flex-direction: column;">
+        <div style="flex: 1;overflow-y:scroll;">
+            <div class="page-header glass-h1 text-center">碧螺春</div>
+            碧螺春产于江苏苏州太湖洞庭山，是中国传统名茶，属于绿茶类。以形美、色艳、香浓、味醇"四绝"闻名于中外，其外形条索纤细，茸毛遍布，白毫隐翠；泡成茶后，色嫩绿明亮，味道清香浓郁。
+            
+            <div class="glass-title">产地介绍</div>
+            碧螺春产于江苏省苏州市太湖洞庭山。洞庭分东、西两山，洞庭东山是宛如一个巨舟伸进太湖的半岛，洞庭西山是一个屹立在湖中的岛屿。两山气候温和，年平均气温15.5°C-16.5°C，年降雨量1200-1500毫米，太湖水面，水气升腾，雾气悠悠，空气湿润，土壤呈微酸性或酸性。
+            
+            <div class="glass-title">制作工艺</div>
+            碧螺春的制作工艺精细，采摘有三大特点：一是摘得早，二是采得嫩，三是拣得净。制作工艺包括杀青、揉捻、搓团显毫、烘干等工序。全程手工操作，特别是搓团显毫工序，需要边炒边搓，使茶叶卷曲成螺形。
+            
+            <div class="glass-title">品鉴特点</div>
+            碧螺春条索紧结，卷曲如螺，白毫毕露，银白隐翠，叶芽幼嫩。冲泡后杯中白云翻滚，清香袭入，是国内著名的名茶，常被作为高级礼品茶。
+            
+            <div class="glass-title">冲泡方法</div>
+            水温：75-80℃。茶量：茶水比例1:50。冲泡方法：先注水后放茶，茶叶会慢慢下沉。冲泡时间：第一泡2-3分钟。可连续冲泡3-4次。
+        </div>
+        <div class="glass-buy-container">
+            <p><strong>价格：</strong> ¥288/500g</p>
+            <button class="btn btn-success" onclick="showContactModal()">立即购买</button>
+        </div>
+    </div>
+    <div class="gallery" style="flex: 1; display: flex; flex-direction: column; height: 100%; gap: 10px;">
+        <img src="/assets/css/images/tea/biluochun-tea-detail1.png" style="flex: 1; width: 100%; object-fit: cover; border-radius: 8px;" />
+        <img src="/assets/css/images/tea/biluochun-tea-detail2.png" style="flex: 1; width: 100%; object-fit: cover; border-radius: 8px;" />
+    </div>
+</div>
+
+<!-- 购买联系弹窗 -->
+<div id="contactModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+    <div class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px; border-radius: 10px; width: 400px; position: relative;">
+        <span class="close" onclick="hideContactModal()" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; position: absolute; right: 15px; top: 10px;">&times;</span>
+        <h3 style="color: #28a745; text-align: center; margin-bottom: 20px;">联系购买</h3>
+        <div style="text-align: center; padding: 20px;">
+            <p style="font-size: 18px; margin-bottom: 20px;">请联系客服进行购买</p>
+            <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p><strong>客服微信：</strong> meme-tea-service</p>
+                <p><strong>客服电话：</strong> 400-666-8888</p>
+                <p><strong>客服邮箱：</strong> service@memetea.com</p>
+            </div>
+            <p style="color: #666; font-size: 14px;">工作时间：周一至周日 9:00-18:00</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function showContactModal() {
+    document.getElementById('contactModal').style.display = 'block';
+}
+
+function hideContactModal() {
+    document.getElementById('contactModal').style.display = 'none';
+}
+
+// 点击弹窗外部关闭
+window.onclick = function(event) {
+    var modal = document.getElementById('contactModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+</script> 

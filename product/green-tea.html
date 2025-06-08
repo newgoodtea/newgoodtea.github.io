@@ -1,0 +1,68 @@
+---
+layout: product
+title: 天山绿茶
+---
+
+<div style="display:flex;height:100%;overflow:hidden;">
+    <div style="flex:1;padding-top: 20px;margin-right: 10px;position: relative;display: flex;flex-direction: column;">
+        <div style="flex: 1;overflow-y:scroll;">
+            <div class="page-header glass-h1 text-center">天山绿茶</div>
+            天山绿茶产于新疆天山山脉，海拔高，昼夜温差大，茶叶生长缓慢，内含物质丰富。天山绿茶具有叶片肥厚、香气清雅、滋味鲜醇的特点。茶汤清澈明亮，香气持久，回味甘甜。富含茶多酚、维生素C等营养成分，具有抗氧化、清热解毒的功效。
+            
+            <div class="glass-title">产地介绍</div>
+            天山绿茶产于新疆天山山脉海拔1000-2000米的高山茶园。这里气候独特，昼夜温差大，阳光充足，雨量适中，土壤肥沃，为茶叶的生长提供了得天独厚的自然条件。高海拔的生长环境使得茶叶生长缓慢，叶片厚实，内含物质丰富，品质优异。
+            
+            <div class="glass-title">制作工艺</div>
+            天山绿茶采用传统的绿茶制作工艺，包括采摘、摊青、杀青、揉捻、干燥等步骤。采摘时严格选择一芽一叶或一芽二叶的嫩茶，确保原料的优质。杀青采用高温快速杀青，保持茶叶的绿色和清香。揉捻轻柔，保持茶叶的完整形状。干燥充分，确保茶叶的保存品质。
+            
+            <div class="glass-title">品鉴特点</div>
+            天山绿茶外形条索紧细，色泽翠绿，白毫显露。冲泡后茶汤清澈明亮，呈嫩绿色。香气清雅持久，具有独特的高山茶香。滋味鲜醇甘甜，回味悠长。叶底嫩绿匀整，富有光泽。是绿茶中的上品，深受茶叶爱好者喜爱。
+            
+            <div class="glass-title">冲泡方法</div>
+            水温：80-85℃为宜，避免沸水直冲。茶量：茶水比例约1:50。冲泡时间：第一泡30秒，后续每泡递增10-15秒。冲泡次数：可连续冲泡4-6次。使用玻璃杯或白瓷杯冲泡，便于观赏茶汤色泽和茶叶舒展。
+        </div>
+        <div class="glass-buy-container">
+            <p><strong>价格：</strong> ¥158/500g</p>
+            <button class="btn btn-success" onclick="showContactModal()">立即购买</button>
+        </div>
+    </div>
+    <div class="gallery" style="flex: 1; display: flex; flex-direction: column; height: 100%; gap: 10px;">
+        <img src="/assets/css/images/tea/green-tea-detail1.png" style="flex: 1; width: 100%; object-fit: cover; border-radius: 8px;" />
+        <img src="/assets/css/images/tea/green-tea-detail2.png" style="flex: 1; width: 100%; object-fit: cover; border-radius: 8px;" />
+    </div>
+</div>
+
+<!-- 购买联系弹窗 -->
+<div id="contactModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+    <div class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px; border-radius: 10px; width: 400px; position: relative;">
+        <span class="close" onclick="hideContactModal()" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; position: absolute; right: 15px; top: 10px;">&times;</span>
+        <h3 style="color: #28a745; text-align: center; margin-bottom: 20px;">联系购买</h3>
+        <div style="text-align: center; padding: 20px;">
+            <p style="font-size: 18px; margin-bottom: 20px;">请联系客服进行购买</p>
+            <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p><strong>客服微信：</strong> meme-tea-service</p>
+                <p><strong>客服电话：</strong> 400-666-8888</p>
+                <p><strong>客服邮箱：</strong> service@memetea.com</p>
+            </div>
+            <p style="color: #666; font-size: 14px;">工作时间：周一至周日 9:00-18:00</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function showContactModal() {
+    document.getElementById('contactModal').style.display = 'block';
+}
+
+function hideContactModal() {
+    document.getElementById('contactModal').style.display = 'none';
+}
+
+// 点击弹窗外部关闭
+window.onclick = function(event) {
+    var modal = document.getElementById('contactModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+</script> 

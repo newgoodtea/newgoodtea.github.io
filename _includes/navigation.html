@@ -1,12 +1,48 @@
 <!-- 导航栏代码 -->
-<div class="navbar-fixed" style="display: flex; justify-content: center; background-color:#ccc; padding: 5px 0px;">
+<div class="navbar-fixed" style="display: flex; justify-content: center; background-color:#28a745; padding: 5px 0px;">
   <ul class=" nav nav-pills">
     <!-- 导航栏图标 -->
-    <li class = "nav-link"><img src="/assets/css/images/logo.jpg" class="img-circle img-fluid" width="40px" height="40px"></li>
+    <li class = "nav-link"><img src="/assets/css/images/meme-logo.png" class="img-circle img-fluid" width="40px" height="40px"></li>
     <!-- 导航栏各索引 -->
     <!-- 导航栏各索引 -->
     {% for item in site.data.navigation %}
-    <li class = "nav-link {% if page.url == item.link %} active {% endif %}"><a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>{{ item.name }}</a></li>
+    <li class = "nav-link {% if page.url == item.link %} active {% endif %}"><a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %} style="color: white;">{{ item.name }}</a></li>
     {% endfor %}
   </ul>
 </div>
+
+<style>
+/* 导航栏绿色主题样式 */
+.navbar-fixed {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-pills > li > a {
+    color: white !important;
+    background-color: transparent !important;
+    border-radius: 20px !important;
+    margin: 0 5px !important;
+    transition: all 0.3s ease !important;
+}
+
+.nav-pills > li > a:hover {
+    background-color: rgba(255,255,255,0.2) !important;
+    color: white !important;
+}
+
+.nav-pills > li.active > a {
+    background-color: rgba(255,255,255,0.3) !important;
+    color: white !important;
+}
+
+.nav-pills > li.active > a:hover {
+    background-color: rgba(255,255,255,0.3) !important;
+    color: white !important;
+}
+
+/* Logo样式优化 */
+.nav-link img {
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+</style>
