@@ -1,75 +1,299 @@
 ---
 title: Products
 ---
- <!-- 茶叶产品介绍 -->
-<div class="container mt-5">
-    <div class="text-center mb-4">
-        <h1 class="display-4">优质<span style="color: #28a745;">茶叶</span>产品介绍</h1>
-        <p class="lead">探索我们精选的中国名茶系列，满足您的不同需求和品味。</p>
+
+<style>
+/* 产品页面背景样式 - 淡色系 */
+.products-background {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 背景装饰元素 */
+.bg-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-tea-leaves {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border-radius: 50% 0 50% 0;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.4;
+}
+
+.leaf-1 { top: 10%; left: 10%; animation-delay: 0s; }
+.leaf-2 { top: 20%; right: 15%; animation-delay: 2s; }
+.leaf-3 { bottom: 30%; left: 20%; animation-delay: 4s; }
+.leaf-4 { bottom: 15%; right: 10%; animation-delay: 1s; }
+.leaf-5 { top: 60%; left: 5%; animation-delay: 3s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* 产品容器样式 */
+.product-container {
+    position: relative;
+    z-index: 10;
+    padding: 60px 0;
+}
+
+/* 产品卡片样式 */
+.product-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 50px 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* 产品图片容器 */
+.product-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.product-image-container img {
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.05);
+}
+
+/* 产品信息样式 - 调大字体 */
+.product-info h2 {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 2.8rem;
+}
+
+.product-info p {
+    color: #34495e;
+    line-height: 1.8;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin: 20px 0;
+}
+
+/* 按钮样式 */
+.btn-tea-buy {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-tea-buy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* 标题样式 - 更大字体 */
+.page-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 60px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.page-title h1 {
+    font-size: 4.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+.page-title .tea-highlight {
+    color: #28a745;
+}
+
+.page-title p {
+    font-size: 1.5rem;
+    color: #6c757d;
+    font-weight: 300;
+}
+
+/* 响应式设计 - 手机端也相应调整 */
+@media (max-width: 768px) {
+    .product-card {
+        margin: 30px 0;
+        padding: 20px;
+    }
+    
+    .page-title h1 {
+        font-size: 3rem;
+    }
+    
+    .page-title p {
+        font-size: 1.2rem;
+    }
+    
+    .product-info h2 {
+        font-size: 2.2rem;
+    }
+    
+    .product-info p {
+        font-size: 1.2rem;
+    }
+    
+    .product-price {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<div class="products-background">
+    <!-- 背景装饰元素 -->
+    <div class="bg-decoration">
+        <div class="floating-tea-leaves leaf-1"></div>
+        <div class="floating-tea-leaves leaf-2"></div>
+        <div class="floating-tea-leaves leaf-3"></div>
+        <div class="floating-tea-leaves leaf-4"></div>
+        <div class="floating-tea-leaves leaf-5"></div>
     </div>
 
-    <!-- 产品1 - 天山绿茶 -->
-    <div class="row mb-5">
-        <div class="col-md-6">
-            <img src="assets/css/images/tea/green-tea.png" class="img-fluid" alt="天山绿茶" style="width: 500px; height: 300px;">
+    <div class="container product-container">
+        <!-- 页面标题 -->
+        <div class="page-title">
+            <h1>优质<span class="tea-highlight">茶叶</span>产品介绍</h1>
+            <p>探索我们精选的中国名茶系列，满足您的不同需求和品味</p>
         </div>
-        <div class="col-md-6">
-            <h2>天山绿茶</h2>
-            <p>产于新疆天山山脉，海拔高，昼夜温差大，茶叶生长缓慢，内含物质丰富。天山绿茶具有叶片肥厚、香气清雅、滋味鲜醇的特点。茶汤清澈明亮，香气持久，回味甘甜。富含茶多酚、维生素C等营养成分，具有抗氧化、清热解毒的功效。是日常饮用和送礼的上佳选择。</p>
-            <p><strong>价格：</strong> ¥158/500g</p>
-            <a href="/product/green-tea.html" class="btn btn-success">立即购买</a>
-        </div>
-    </div>
 
-    <!-- 产品2 - 金骏眉红茶 -->
-    <div class="row mb-5">
-        <div class="col-md-6 order-md-2">
-            <img src="assets/css/images/tea/red-tea.png" class="img-fluid" alt="金骏眉红茶" style="width: 500px; height: 300px;">
+        <!-- 产品1 - 天山绿茶 -->
+        <div class="product-card">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="product-image-container">
+                        <img src="assets/css/images/tea/green-tea.png" alt="天山绿茶">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-info">
+                        <h2>天山绿茶</h2>
+                        <p>产于新疆天山山脉，海拔高，昼夜温差大，茶叶生长缓慢，内含物质丰富。天山绿茶具有叶片肥厚、香气清雅、滋味鲜醇的特点。茶汤清澈明亮，香气持久，回味甘甜。富含茶多酚、维生素C等营养成分，具有抗氧化、清热解毒的功效。是日常饮用和送礼的上佳选择。</p>
+                        <div class="product-price">¥158/500g</div>
+                        <a href="/product/green-tea.html" class="btn-tea-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 order-md-1">
-            <h2>金骏眉红茶</h2>
-            <p>产于福建武夷山，选用高山茶树嫩芽为原料，经过精心制作而成。金骏眉外形紧细秀丽，色泽金黄，汤色红艳，香气浓郁持久，滋味醇厚甘甜。具有独特的蜜香和果香，是红茶中的珍品。富含茶黄素、茶红素等有益成分，具有暖胃养胃、提神醒脑的功效。</p>
-            <p><strong>价格：</strong> ¥298/500g</p>
-            <a href="/product/black-tea.html" class="btn btn-success">立即购买</a>
-        </div>
-    </div>
 
-    <!-- 产品3 - 碧螺春 -->
-    <div class="row mb-5">
-        <div class="col-md-6">
-            <img src="assets/css/images/tea/biluochun.jpg" class="img-fluid" alt="碧螺春" style="width: 500px; height: 300px;">
+        <!-- 产品2 - 金骏眉红茶 -->
+        <div class="product-card">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-md-2">
+                    <div class="product-image-container">
+                        <img src="assets/css/images/tea/red-tea.png" alt="金骏眉红茶">
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <div class="product-info">
+                        <h2>金骏眉红茶</h2>
+                        <p>产于福建武夷山，选用高山茶树嫩芽为原料，经过精心制作而成。金骏眉外形紧细秀丽，色泽金黄，汤色红艳，香气浓郁持久，滋味醇厚甘甜。具有独特的蜜香和果香，是红茶中的珍品。富含茶黄素、茶红素等有益成分，具有暖胃养胃、提神醒脑的功效。</p>
+                        <div class="product-price">¥298/500g</div>
+                        <a href="/product/red-tea.html" class="btn-tea-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h2>碧螺春</h2>
-            <p>产于江苏苏州洞庭山，是中国十大名茶之一。碧螺春条索纤细，卷曲如螺，满身披毫，银白隐翠。茶汤清澈明亮，香气清雅持久，滋味鲜醇甘厚。具有独特的花香果味，香气浓郁，回味无穷。富含氨基酸、维生素等营养成分，具有清热降火、美容养颜的功效。</p>
-            <p><strong>价格：</strong> ¥228/500g</p>
-            <a href="/product/oolong-tea.html" class="btn btn-success">立即购买</a>
-        </div>
-    </div>
 
-    <!-- 产品4 - 寿眉白茶 -->
-    <div class="row mb-5">
-        <div class="col-md-6 order-md-2">
-            <img src="assets/css/images/tea/white-tea.png" class="img-fluid" alt="寿眉白茶" style="width: 500px; height: 300px;">
+        <!-- 产品3 - 碧螺春 -->
+        <div class="product-card">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="product-image-container">
+                        <img src="assets/css/images/tea/biluochun.jpg" alt="碧螺春">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-info">
+                        <h2>碧螺春</h2>
+                        <p>产于江苏苏州洞庭山，是中国十大名茶之一。碧螺春条索纤细，卷曲如螺，满身披毫，银白隐翠。茶汤清澈明亮，香气清雅持久，滋味鲜醇甘厚。具有独特的花香果味，香气浓郁，回味无穷。富含氨基酸、维生素等营养成分，具有清热降火、美容养颜的功效。</p>
+                        <div class="product-price">¥228/500g</div>
+                        <a href="/product/biluochun-tea.html" class="btn-tea-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 order-md-1">
-            <h2>寿眉白茶</h2>
-            <p>产于福建福鼎，是白茶中的珍品。寿眉白茶外形粗犷，叶片较大，色泽灰绿，白毫显露。茶汤清淡甘甜，香气清香淡雅，滋味醇和回甘。具有越陈越香的特点，存放时间越长，口感越佳。富含茶多酚、黄酮类化合物，具有清热解毒、抗衰老的功效。</p>
-            <p><strong>价格：</strong> ¥188/500g</p>
-            <a href="/product/white-tea.html" class="btn btn-success">立即购买</a>
-        </div>
-    </div>
 
-    <!-- 产品5 - 陈年普洱 -->
-    <div class="row mb-5">
-        <div class="col-md-6">
-            <img src="assets/css/images/tea/puer.png" class="img-fluid" alt="陈年普洱" style="width: 500px; height: 300px;">
+        <!-- 产品4 - 寿眉白茶 -->
+        <div class="product-card">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-md-2">
+                    <div class="product-image-container">
+                        <img src="assets/css/images/tea/white-tea.png" alt="寿眉白茶">
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <div class="product-info">
+                        <h2>寿眉白茶</h2>
+                        <p>产于福建福鼎，是白茶中的珍品。寿眉白茶外形粗犷，叶片较大，色泽灰绿，白毫显露。茶汤清淡甘甜，香气清香淡雅，滋味醇和回甘。具有越陈越香的特点，存放时间越长，口感越佳。富含茶多酚、黄酮类化合物，具有清热解毒、抗衰老的功效。</p>
+                        <div class="product-price">¥188/500g</div>
+                        <a href="/product/white-tea.html" class="btn-tea-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h2>陈年普洱茶</h2>
-            <p>产于云南普洱地区，选用优质大叶种茶叶为原料，经过特殊工艺发酵而成。陈年普洱茶色泽红褐，汤色红浓明亮，香气陈香浓郁，滋味醇厚回甘。具有越陈越香的独特品质，是茶叶收藏的佳品。富含茶褐素、没食子酸等有益成分，具有降脂减肥、消食健胃的功效。</p>
-            <p><strong>价格：</strong> ¥368/500g</p>
-            <a href="/product/pu-erh-tea.html" class="btn btn-success">立即购买</a>
+
+        <!-- 产品5 - 陈年普洱 -->
+        <div class="product-card">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="product-image-container">
+                        <img src="assets/css/images/tea/puer.png" alt="陈年普洱">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-info">
+                        <h2>陈年普洱茶</h2>
+                        <p>产于云南普洱地区，选用优质大叶种茶叶为原料，经过特殊工艺发酵而成。陈年普洱茶色泽红褐，汤色红浓明亮，香气陈香浓郁，滋味醇厚回甘。具有越陈越香的独特品质，是茶叶收藏的佳品。富含茶褐素、没食子酸等有益成分，具有降脂减肥、消食健胃的功效。</p>
+                        <div class="product-price">¥368/500g</div>
+                        <a href="/product/pu-erh-tea.html" class="btn-tea-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
