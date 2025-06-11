@@ -1,119 +1,812 @@
 ---
-title: JoinUs
+title: 加入我们
 ---
-<!-- 招聘信内容 -->
-<div class="container mt-5">
-    <h2 class="display-4 text-center" >招聘信</h2>
-    <p class="lead">尊敬的应聘者:</p>
-    <p style="text-indent: 2em;">我们很高兴地通知您，公司目前有多个职位空缺，这些职位将向您提供一个展示和提升技能的绝佳机会。</p>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                软件工程师
-            </h3>
+
+<style>
+/* 现代化加入我们页面样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 全屏英雄区域 */
+.career-hero {
+    height: 70vh;
+    background: url('assets/css/images/joinus/joinus-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.career-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="3" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="2" fill="white" opacity="0.1"/><circle cx="70" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="60" r="2" fill="white" opacity="0.1"/></svg>');
+    animation: sparkle 20s infinite linear;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0px) rotate(360deg); }
+}
+
+.career-hero-content {
+    text-align: center;
+    color: white;
+    z-index: 10;
+    position: relative;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+.career-hero-title {
+    font-size: 5.4rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+.career-hero-subtitle {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+    opacity: 0.9;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1s forwards;
+    line-height: 1.6;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 公司介绍区域 */
+.company-intro {
+    padding: 100px 0;
+    background: #f8f9fa;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 4.2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.7rem;
+    color: #6c757d;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+.intro-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.intro-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-top: 5px solid #28a745;
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.intro-card:hover::before {
+    left: 100%;
+}
+
+.intro-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+}
+
+.intro-icon {
+    font-size: 3.5rem;
+    margin-bottom: 25px;
+    display: block;
+    color: #28a745;
+}
+
+.intro-title {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.intro-text {
+    font-size: 1.3rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* 职位招聘区域 */
+.positions-section {
+    padding: 100px 0;
+    background: white;
+    position: relative;
+}
+
+.positions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.position-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    border-left: 5px solid #28a745;
+}
+
+.position-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+}
+
+.position-header {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.position-title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.position-department {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+.position-content {
+    padding: 30px;
+}
+
+.position-section {
+    margin-bottom: 25px;
+}
+
+.position-section h4 {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: bold;
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 8px;
+}
+
+.position-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.position-section li {
+    padding: 8px 0;
+    color: #666;
+    position: relative;
+    padding-left: 25px;
+    font-size: 1.2rem;
+}
+
+.position-section li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.salary-range {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #2c3e50;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* 福利待遇区域 */
+.benefits-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+    position: relative;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.benefit-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #28a745, #20c997);
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #28a745;
+}
+
+.benefit-title {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.benefit-text {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1.2rem;
+}
+
+/* 申请区域 */
+.apply-section {
+    padding: 100px 0;
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.apply-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.apply-title {
+    font-size: 3.6rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.apply-text {
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+.apply-buttons {
+    margin-bottom: 50px;
+}
+
+.apply-btn {
+    display: inline-block;
+    padding: 20px 45px;
+    margin: 10px 15px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+}
+
+.apply-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(40, 167, 69, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.apply-btn.secondary {
+    background: transparent;
+    border: 2px solid white;
+}
+
+.apply-btn.secondary:hover {
+    background: white;
+    color: #2c3e50;
+}
+
+.contact-info {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 40px;
+    margin-top: 40px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #28a745;
+}
+
+.contact-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.contact-text {
+    opacity: 0.9;
+    font-size: 1.2rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .career-hero-title {
+        font-size: 3.8rem;
+    }
+    
+    .career-hero-subtitle {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 3.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .intro-title {
+        font-size: 1.8rem;
+    }
+    
+    .intro-text {
+        font-size: 1.2rem;
+    }
+    
+    .position-title {
+        font-size: 2rem;
+    }
+    
+    .position-department {
+        font-size: 1.2rem;
+    }
+    
+    .position-section h4 {
+        font-size: 1.4rem;
+    }
+    
+    .position-section li {
+        font-size: 1.1rem;
+    }
+    
+    .salary-range {
+        font-size: 1.2rem;
+    }
+    
+    .benefit-title {
+        font-size: 1.4rem;
+    }
+    
+    .benefit-text {
+        font-size: 1.1rem;
+    }
+    
+    .apply-title {
+        font-size: 2.8rem;
+    }
+    
+    .apply-text {
+        font-size: 1.4rem;
+    }
+    
+    .apply-btn {
+        font-size: 1.2rem;
+        padding: 18px 35px;
+    }
+    
+    .contact-title {
+        font-size: 1.2rem;
+    }
+    
+    .contact-text {
+        font-size: 1.1rem;
+    }
+    
+    .positions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .apply-btn {
+        display: block;
+        margin: 10px auto;
+        max-width: 280px;
+    }
+}
+
+/* 滚动动画 */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
+<!-- 英雄区域 -->
+<section class="career-hero">
+    <div class="career-hero-content">
+        <h1 class="career-hero-title">
+            加入我们的<span style="color: #28a745;">茶叶</span>大家庭
+        </h1>
+        <p class="career-hero-subtitle">
+            与我们一起传承中国茶文化，为全球茶叶爱好者带来最优质的产品和服务
+        </p>
+    </div>
+</section>
+
+<!-- 公司介绍区域 -->
+<section class="company-intro animate-on-scroll">
+    <div class="container">
+        <h2 class="section-title">为什么选择<span style="color: #28a745;">我们</span></h2>
+        <p class="section-subtitle">
+            我们是一家充满活力的茶叶公司，致力于将中国优质茶叶推向世界。在这里，您将获得专业成长和个人发展的无限可能。
+        </p>
+        
+        <div class="intro-content">
+            <div class="intro-card">
+                <div class="intro-icon">🌱</div>
+                <h3 class="intro-title">传承与创新</h3>
+                <p class="intro-text">
+                    我们既传承千年茶文化，又拥抱现代科技创新，为员工提供传统与现代结合的工作环境。
+                </p>
+            </div>
+            <div class="intro-card">
+                <div class="intro-icon">🚀</div>
+                <h3 class="intro-title">快速发展</h3>
+                <p class="intro-text">
+                    公司业务快速扩张，为员工提供广阔的职业发展空间和晋升机会。
+                </p>
+            </div>
+            <div class="intro-card">
+                <div class="intro-icon">🏆</div>
+                <h3 class="intro-title">专业团队</h3>
+                <p class="intro-text">
+                    与茶叶行业的专家和精英共事，在专业的团队中不断学习和成长。
+                </p>
+            </div>
         </div>
-        <div class="panel-body">
-            <div class="row mb-7">
-                <div class="col-md-6 text-center">
-                    <div class="card mb-6 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="card-title">职位描述</h3>
-                            <p class="card-text">作为软件工程师，您需要负责：</p>
-                            <p class="card-text">设计、开发和维护高质量的软件。</p>
-                            <p class="card-text">与跨职能团队合作，确保项目按时交付。</p>
-                            <p class="card-text">参与代码审查和技术讨论。</p>
-                            <p class="card-text">不断学习和应用新技术，提高开发效率。</p>
-                        </div>
+    </div>
+</section>
+
+<!-- 职位招聘区域 -->
+<section class="positions-section animate-on-scroll">
+    <div class="container">
+        <h2 class="section-title">招聘<span style="color: #28a745;">职位</span></h2>
+        <p class="section-subtitle">
+            我们正在寻找充满热情的专业人才加入我们的团队
+        </p>
+        
+        <div class="positions-grid">
+            <!-- 茶艺师 -->
+            <div class="position-card">
+                <div class="position-header">
+                    <h3 class="position-title">高级茶艺师</h3>
+                    <p class="position-department">产品部</p>
+                </div>
+                <div class="position-content">
+                    <div class="position-section">
+                        <h4>岗位职责</h4>
+                        <ul>
+                            <li>负责茶叶品质鉴定和评估</li>
+                            <li>指导茶叶冲泡技艺和品鉴方法</li>
+                            <li>参与新产品开发和品质控制</li>
+                            <li>开展茶艺培训和文化推广活动</li>
+                        </ul>
+                    </div>
+                    <div class="position-section">
+                        <h4>任职要求</h4>
+                        <ul>
+                            <li>茶学或相关专业本科以上学历</li>
+                            <li>持有高级茶艺师资格证书</li>
+                            <li>3年以上茶叶行业从业经验</li>
+                            <li>具备优秀的沟通表达能力</li>
+                        </ul>
+                    </div>
+                    <div class="salary-range">
+                        薪资范围：8K-15K/月
                     </div>
                 </div>
-                <div class="col-md-6 text-center">
-                    <div class="card mb-6 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="card-title">职位要求</h3>
-                            <p class="card-text">计算机科学或相关领域的学士学位。</p>
-                            <p class="card-text">至少3年的软件开发经验。</p>
-                            <p class="card-text">熟练掌握一种或多种编程语言，如Java、Python、JavaScript等。</p>
-                            <p class="card-text">具备良好的问题解决能力和团队合作精神。</p>
-                            <p class="card-text">有敏捷开发经验者优先。</p>
-                        </div>
+            </div>
+
+            <!-- 销售经理 -->
+            <div class="position-card">
+                <div class="position-header">
+                    <h3 class="position-title">区域销售经理</h3>
+                    <p class="position-department">销售部</p>
+                </div>
+                <div class="position-content">
+                    <div class="position-section">
+                        <h4>岗位职责</h4>
+                        <ul>
+                            <li>负责指定区域的销售业务拓展</li>
+                            <li>维护现有客户关系，开发新客户</li>
+                            <li>制定区域销售策略和计划</li>
+                            <li>完成公司制定的销售目标</li>
+                        </ul>
+                    </div>
+                    <div class="position-section">
+                        <h4>任职要求</h4>
+                        <ul>
+                            <li>市场营销或相关专业大专以上学历</li>
+                            <li>2年以上销售管理经验</li>
+                            <li>熟悉茶叶市场和消费者需求</li>
+                            <li>具备强烈的责任心和执行力</li>
+                        </ul>
+                    </div>
+                    <div class="salary-range">
+                        薪资范围：10K-20K/月 + 提成
+                    </div>
+                </div>
+            </div>
+
+            <!-- 品控专员 -->
+            <div class="position-card">
+                <div class="position-header">
+                    <h3 class="position-title">品质控制专员</h3>
+                    <p class="position-department">质量部</p>
+                </div>
+                <div class="position-content">
+                    <div class="position-section">
+                        <h4>岗位职责</h4>
+                        <ul>
+                            <li>建立和完善产品质量管理体系</li>
+                            <li>监督生产过程中的质量控制</li>
+                            <li>进行产品检验和质量分析</li>
+                            <li>处理质量问题和客户投诉</li>
+                        </ul>
+                    </div>
+                    <div class="position-section">
+                        <h4>任职要求</h4>
+                        <ul>
+                            <li>食品科学或质量管理相关专业</li>
+                            <li>熟悉食品质量管理法规</li>
+                            <li>具备质量管理体系认证经验</li>
+                            <li>细心负责，具备分析解决问题能力</li>
+                        </ul>
+                    </div>
+                    <div class="salary-range">
+                        薪资范围：6K-12K/月
+                    </div>
+                </div>
+            </div>
+
+            <!-- 电商运营 -->
+            <div class="position-card">
+                <div class="position-header">
+                    <h3 class="position-title">电商运营专员</h3>
+                    <p class="position-department">电商部</p>
+                </div>
+                <div class="position-content">
+                    <div class="position-section">
+                        <h4>岗位职责</h4>
+                        <ul>
+                            <li>负责电商平台店铺运营管理</li>
+                            <li>制定线上推广和营销策略</li>
+                            <li>优化产品页面和用户体验</li>
+                            <li>分析销售数据，提升转化率</li>
+                        </ul>
+                    </div>
+                    <div class="position-section">
+                        <h4>任职要求</h4>
+                        <ul>
+                            <li>电子商务或市场营销相关专业</li>
+                            <li>1年以上电商平台运营经验</li>
+                            <li>熟悉淘宝、京东等主流电商平台</li>
+                            <li>具备数据分析和用户洞察能力</li>
+                        </ul>
+                    </div>
+                    <div class="salary-range">
+                        薪资范围：5K-10K/月 + 绩效奖金
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                产品经理
-            </h3>
+<!-- 福利待遇区域 -->
+<section class="benefits-section animate-on-scroll">
+    <div class="container">
+        <h2 class="section-title">福利<span style="color: #28a745;">待遇</span></h2>
+        <p class="section-subtitle">
+            我们为员工提供完善的福利保障和职业发展支持
+        </p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3 class="benefit-title">具有竞争力的薪酬</h3>
+                <p class="benefit-text">基本工资 + 绩效奖金 + 年终奖，让您的付出得到应有回报</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🏥</div>
+                <h3 class="benefit-title">完善的保险保障</h3>
+                <p class="benefit-text">五险一金 + 补充医疗保险 + 意外险，全方位保障您的生活</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🏖️</div>
+                <h3 class="benefit-title">带薪休假</h3>
+                <p class="benefit-text">法定节假日 + 年假 + 病假 + 婚假，工作生活平衡发展</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📚</div>
+                <h3 class="benefit-title">培训发展</h3>
+                <p class="benefit-text">专业技能培训 + 管理培训 + 外部学习机会，助力职业成长</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎉</div>
+                <h3 class="benefit-title">团队活动</h3>
+                <p class="benefit-text">团建活动 + 节日庆祝 + 员工生日会，营造温馨团队氛围</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🍵</div>
+                <h3 class="benefit-title">茶叶福利</h3>
+                <p class="benefit-text">员工专享茶叶优惠 + 免费品茶 + 茶艺培训，感受茶文化魅力</p>
+            </div>
         </div>
-        <div class="panel-body">
-            <div class="row mb-7">
-                <div class="col-md-6 text-center">
-                    <div class="card mb-6 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="card-title">职位描述</h3>
-                            <p class="card-text">作为产品经理，您需要负责：</p>
-                            <p class="card-text">产品的整体规划、设计和管理。</p>
-                            <p class="card-text">与团队紧密合作，确保产品按时交付并满足用户需求。</p>
-                            <p class="card-text">收集和分析用户反馈，持续优化产品功能。</p>
-                        </div>
+    </div>
+</section>
+
+<!-- 申请区域 -->
+<section class="apply-section">
+    <div class="container">
+        <div class="apply-content">
+            <h2 class="apply-title">准备好加入我们了吗？</h2>
+            <p class="apply-text">
+                如果您对茶文化充满热情，希望在茶叶行业发展，我们诚挚邀请您加入我们的团队！
+            </p>
+            <div class="apply-buttons">
+                <a href="liveResumeSubmission.html" class="apply-btn">📝 在线投递简历</a>
+                <a href="mailto:1715173370@qq.com" class="apply-btn secondary">📧 发送简历邮件</a>
+            </div>
+            
+            <div class="contact-info">
+                <h3 style="margin-bottom: 30px; font-size: 1.5rem;">联系我们</h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-title">联系电话</div>
+                        <div class="contact-text">023-88127143</div>
                     </div>
-                </div>
-                <div class="col-md-6 text-center">
-                    <div class="card mb-6 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="card-title">职位要求</h3>
-                            <p class="card-text">拥有相关领域的学士学位或更高学历。</p>
-                            <p class="card-text">具备3年以上的产品经理或相关工作经验。</p>
-                            <p class="card-text">对市场和用户需求有敏锐的洞察力。</p>
-                            <p class="card-text">具备良好的沟通能力和团队合作精神。</p>
-                        </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-title">招聘邮箱</div>
+                        <div class="contact-text">1715173370@qq.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-title">公司地址</div>
+                        <div class="contact-text">云南省昆明市呈贡区云南大学</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-title">微信咨询</div>
+                        <div class="contact-text">TeaCareer2024</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                市场营销专员
-            </h3>
-        </div>
-        <div class="panel-body">
-            <div class="row mb-7">
-                <div class="col-md-6 text-center">
-                    <div class="card mb-6 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="card-title">职位描述</h3>
-                            <p class="card-text">策划和执行市场营销活动，提高品牌知名度和市场份额。</p>
-                            <p class="card-text">分析市场趋势和竞争对手情况，为营销策略提供建议。</p>
-                            <p class="card-text">协助销售团队进行客户开发和维护工作。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 text-center">
-                    <div class="card mb-6 shadow-sm">
-                        <div class="card-body">
-                            <h3 class="card-title">职位要求</h3>
-                            <p class="card-text">拥有市场营销、广告或相关领域的学士学位。</p>
-                            <p class="card-text">具备1年以上的市场营销或相关工作经验。</p>
-                            <p class="card-text">熟悉各种市场营销工具和渠道。</p>
-                            <p class="card-text">具备良好的沟通能力和创意能力。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<script>
+// 页面滚动动画
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('animated');
+        }
+    });
+}
 
-    <p style="text-indent: 2em;">如果您对以上任何一个职位感兴趣，请将您的简历发送至<a href="mailto:ArthurSun1314@Gamil.com">ArthurSun1314@Gamil.com</a>。另外，您还可以点击<a href="liveResumeSubmission.html">此处</a>在线填写并投递简历。</p>
-    <p style="text-indent: 2em;">我们期待您的加入，并相信您将成为我们团队的重要一员！</p>
-    <p>此致</p>
-    <p style="text-align: right;">PerfectGlassCompany 人力资源部</p>
-    <p style="text-align: right;">电话：023-88127143</p>
-    <p style="text-align: right;">地址：云南省昆明市呈贡区万达广场</p>
+// 监听滚动事件
+window.addEventListener('scroll', animateOnScroll);
 
-</div>
+// 页面加载时执行一次
+document.addEventListener('DOMContentLoaded', animateOnScroll);
+</script>

@@ -1,198 +1,621 @@
 ---
 layout: default
-title: Serve
+title: 售后服务
 ---
-<!-- 售后服务介绍 -->
-<div class="container mt-5">
-    <div class="text-center mb-4">
-        <h1 class="display-4"><span class="text-success">售后服务</span></h1>
-        <div class="panel-body" style="padding: 30px 150px;">
-            <img src="assets/css/images/Page1/protect.jpg" class="img-rounded" style="width: 20%; height: auto;">
+
+<style>
+/* 售后页面专用样式 */
+.service-hero {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%2328a745" opacity="0.1"/><circle cx="80" cy="40" r="3" fill="%2328a745" opacity="0.1"/><circle cx="40" cy="80" r="2" fill="%2328a745" opacity="0.1"/></svg>');
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.service-title {
+    color: #2c3e50;
+    font-size: 5.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.service-subtitle {
+    color: #6c757d;
+    font-size: 2.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.tea-highlight {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* 服务承诺卡片 */
+.promise-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-left: 5px solid #28a745;
+    position: relative;
+    overflow: hidden;
+}
+
+.promise-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(40, 167, 69, 0.05), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.promise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.promise-card:hover::before {
+    animation: shimmer 1s ease-in-out;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.promise-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+}
+
+.promise-title {
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.promise-text {
+    color: #6c757d;
+    line-height: 1.8;
+    font-size: 1.65rem;
+    text-align: center;
+}
+
+/* FAQ样式 */
+.faq-section {
+    background: #f8f9fa;
+    padding: 80px 0;
+    margin-top: 50px;
+}
+
+.faq-title {
+    text-align: center;
+    font-size: 3.75rem;
+    color: #2c3e50;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.faq-question {
+    background: #28a745;
+    color: white;
+    padding: 20px 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.faq-question:hover {
+    background: #218838;
+}
+
+.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-answer {
+    padding: 25px;
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.65rem;
+    display: none;
+    border-top: 1px solid #e9ecef;
+}
+
+/* 联系方式样式 */
+.contact-section {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 Q50,5 80,20 Q85,50 80,80 Q50,85 20,80 Q5,50 20,20 Z" fill="white" opacity="0.1"/></svg>');
+    animation: gentle-float 15s infinite ease-in-out;
+}
+
+@keyframes gentle-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.contact-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-5px);
+}
+
+.contact-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+.contact-title {
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact-info {
+    font-size: 1.65rem;
+    line-height: 1.6;
+}
+
+/* 流程步骤样式 */
+.process-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.process-title {
+    text-align: center;
+    font-size: 3.75rem;
+    color: #2c3e50;
+    margin-bottom: 60px;
+    font-weight: bold;
+}
+
+.process-step {
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+}
+
+.step-title {
+    font-size: 1.95rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.step-description {
+    color: #6c757d;
+    line-height: 1.6;
+    font-size: 1.5rem;
+}
+
+/* 质量图片样式 */
+.quality-image {
+    width: 300px;
+    height: auto;
+    margin: 30px auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.quality-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .service-title {
+        font-size: 3.75rem;
+    }
+    
+    .service-subtitle {
+        font-size: 1.8rem;
+    }
+    
+    .promise-card {
+        padding: 30px 20px;
+        margin: 20px 0;
+    }
+    
+    .contact-card {
+        padding: 30px 20px;
+        margin-bottom: 20px;
+    }
+    
+    .promise-title {
+        font-size: 2.1rem;
+    }
+    
+    .promise-text {
+        font-size: 1.35rem;
+    }
+    
+    .faq-title {
+        font-size: 2.8rem;
+    }
+    
+    .faq-question {
+        font-size: 1.5rem;
+    }
+    
+    .faq-answer {
+        font-size: 1.35rem;
+    }
+    
+    .process-title {
+        font-size: 2.8rem;
+    }
+    
+    .step-title {
+        font-size: 1.65rem;
+    }
+    
+    .step-description {
+        font-size: 1.2rem;
+    }
+    
+    .contact-title {
+        font-size: 1.8rem;
+    }
+    
+    .contact-info {
+        font-size: 1.35rem;
+    }
+    
+    .quality-image {
+        width: 250px;
+    }
+}
+</style>
+
+<!-- 主标题区域 -->
+<section class="service-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="service-title">专业<span class="tea-highlight">茶叶</span>售后服务</h1>
+                <img src="assets/css/images/company/quality.png" alt="品质保证" class="quality-image">
+                <p class="service-subtitle">
+                    我们深知每一片茶叶都承载着您的期待与信任<br>
+                    因此，我们承诺为您提供最真诚、最专业的售后服务
+                </p>
+            </div>
         </div>
-        <p class="lead"> 我们致力于为您提供最优质的售后服务，确保您的满意。</p>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                 售后服务信息
-            </h3>
+</section>
+
+<!-- 服务承诺 -->
+<section class="container my-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h2 class="display-4 text-dark">我们的<span class="tea-highlight">服务承诺</span></h2>
+            <p class="lead text-muted">让每一位茶友都能享受到最优质的茶叶体验</p>
         </div>
-        <div class="panel-body">
-            <div class="row mb-5">
-                <div class="col-md-4 text-center">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title"><span class="text-success">退货政策</span></h2>
-                            <p class="card-text">如果您对购买的产品不满意，可以在30天内退货。请确保产品完好无损并附上原始包装。</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#returnPolicyModal">了解更多</button>
-                        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="promise-card">
+                <div class="promise-icon">🍃</div>
+                <h3 class="promise-title">品质保证</h3>
+                <p class="promise-text">
+                    我们承诺所有茶叶均为原产地直供，严格把控每一道工序。
+                    如您收到的茶叶品质不符合描述，我们将无条件退换货。
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="promise-card">
+                <div class="promise-icon">📦</div>
+                <h3 class="promise-title">包装保护</h3>
+                <p class="promise-text">
+                    采用专业茶叶包装，确保茶叶在运输过程中的新鲜度和完整性。
+                    如因包装问题导致茶叶受损，我们将立即重新发货。
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="promise-card">
+                <div class="promise-icon">⏰</div>
+                <h3 class="promise-title">及时响应</h3>
+                <p class="promise-text">
+                    客服团队7×12小时在线服务，任何问题我们都会在2小时内回复。
+                    急需处理的问题，我们承诺1小时内给出解决方案。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 服务流程 -->
+<section class="process-section">
+    <div class="container">
+        <h2 class="process-title">售后服务<span class="tea-highlight">流程</span></h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4 class="step-title">联系客服</h4>
+                    <p class="step-description">
+                        通过微信、电话或邮件联系我们的客服团队，
+                        说明您遇到的问题或需求
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4 class="step-title">问题评估</h4>
+                    <p class="step-description">
+                        专业客服人员会详细了解情况，
+                        并为您提供最合适的解决方案
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4 class="step-title">快速处理</h4>
+                    <p class="step-description">
+                        根据具体情况安排退换货、补发
+                        或其他相应的处理措施
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4 class="step-title">跟踪反馈</h4>
+                    <p class="step-description">
+                        全程跟踪处理进度，确保问题
+                        得到彻底解决，让您满意
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 常见问题 -->
+<section class="faq-section">
+    <div class="container">
+        <h2 class="faq-title">常见<span class="tea-highlight">问题</span>解答</h2>
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        茶叶收到后发现不是我想要的口味，可以退换吗？
+                    </div>
+                    <div class="faq-answer">
+                        当然可以！我们理解每个人的口味偏好不同。您可以在收到商品后7天内联系我们申请退换货。请保持茶叶包装完整，我们将为您免费更换其他口味的茶叶或全额退款。
                     </div>
                 </div>
-                <div class="col-md-4 text-center">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title"><span class="text-success">换货政策</span></h2>
-                            <p class="card-text">如果您收到的产品有任何损坏或缺陷，我们将免费为您更换。请在收到产品后的7天内联系我们。</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exchangePolicyModal">了解更多</button>
-                        </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        收到的茶叶包装破损或茶叶有异味怎么办？
+                    </div>
+                    <div class="faq-answer">
+                        请第一时间联系我们的客服，并拍照发送给我们。我们会立即安排重新发货，并承担所有运费。同时，我们会调查包装和运输环节，确保类似问题不再发生。
                     </div>
                 </div>
-                <div class="col-md-4 text-center">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title"><span class="text-success">保修服务</span></h2>
-                            <p class="card-text">我们提供一年的保修服务。如果产品在保修期内出现任何质量问题，我们将免费为您维修或更换。</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#warrantyServiceModal">了解更多</button>
-                        </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        茶叶的保质期和储存方法是什么？
+                    </div>
+                    <div class="faq-answer">
+                        不同类型的茶叶保质期不同：绿茶建议1-2年内饮用，红茶可保存2-3年，普洱茶可长期储存。请将茶叶存放在干燥、避光、通风的地方，避免与异味物品接触。我们随货会附上详细的储存说明。
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                常见问题
-            </h3>
-        </div>
-        <div class="panel-body">
-            <div class="row mt-5">
-                <div class="col-12">
-                    <div id="accordion">
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        如何申请退货？
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body" style="text-indent: 2em;">
-                                    请联系客户服务并提供您的订单号和退货原因。我们将指导您完成退货流程。
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingTwo">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        换货需要多长时间？
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                <div class="card-body" style="text-indent: 2em;">
-                                    换货通常需要7到14个工作日。具体时间取决于您的位置和产品的库存情况。
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        保修服务包括哪些内容？
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                <div class="card-body" style="text-indent: 2em;">
-                                    我们的保修服务包括产品的维修和更换，但不包括人为损坏和自然磨损。
-                                </div>
-                            </div>
-                        </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        如何确定茶叶的冲泡方法？
+                    </div>
+                    <div class="faq-answer">
+                        每种茶叶都有最佳的冲泡方法。我们的包装内都会附带详细的冲泡指南。您也可以关注我们的微信公众号获取更多冲泡技巧，或直接联系客服获得专业的冲泡建议。
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        大批量采购有什么优惠政策吗？
+                    </div>
+                    <div class="faq-answer">
+                        我们为企业客户和大批量采购提供优惠价格。购买5kg以上享受9折优惠，10kg以上享受8.5折优惠。企业客户还可申请月结账期服务。详情请联系我们的商务客服。
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- 联系我们 -->
-    <div class="row mt-5">
-        <div class="col-12 text-center">
-            <h2>联系我们</h2>
-            <p>如果您有任何问题或需要帮助，请随时联系我们的客户服务团队：mailto:support@glasscup.com</p>
-            <a href="mailto:support@glasscup.com" class="btn btn-primary">立即发送邮件</a>
-            <p class="mt-3">或拨打我们的客服电话：400-123-4567</p>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 1: 退货政策 -->
-<div class="modal fade" id="returnPolicyModal" tabindex="-1" role="dialog" aria-labelledby="returnPolicyModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="returnPolicyModalLabel">退货政策</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>如果您对购买的产品不满意，可以在30天内退货。请确保产品完好无损并附上原始包装。</p>
-                <p>退货流程：</p>
-                <ol>
-                    <li>联系客户服务并提供您的订单号和退货原因。</li>
-                    <li>收到退货确认后，将产品寄回至指定地址。</li>
-                    <li>我们将在收到退货后5-7个工作日内处理退款。</li>
-                </ol>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+<!-- 联系我们 -->
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-4">联系我们的专业<span style="color: #ffd700;">客服团队</span></h2>
+                <p class="lead">无论您有任何问题，我们都会真诚为您服务</p>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Modal 2: 换货政策 -->
-<div class="modal fade" id="exchangePolicyModal" tabindex="-1" role="dialog" aria-labelledby="exchangePolicyModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exchangePolicyModalLabel">换货政策</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h4 class="contact-title">微信客服</h4>
+                    <div class="contact-info">
+                        <strong>微信号：</strong>meme-tea-service<br>
+                        <strong>服务时间：</strong>09:00-21:00<br>
+                        <small>扫码添加，专业茶艺师在线解答</small>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>如果您收到的产品有任何损坏或缺陷，我们将免费为您更换。请在收到产品后的7天内联系我们。</p>
-                <p>换货流程：</p>
-                <ol>
-                    <li>联系客户服务并提供您的订单号和问题描述。</li>
-                    <li>收到换货确认后，将产品寄回至指定地址。</li>
-                    <li>我们将在收到产品后5-7个工作日内处理换货。</li>
-                </ol>
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h4 class="contact-title">客服热线</h4>
+                    <div class="contact-info">
+                        <strong>电话：</strong>400-666-8888<br>
+                        <strong>服务时间：</strong>09:00-18:00<br>
+                        <small>专线直达，问题快速解决</small>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h4 class="contact-title">邮箱服务</h4>
+                    <div class="contact-info">
+                        <strong>邮箱：</strong>1715173370@qq.com<br>
+                        <strong>回复时间：</strong>2小时内<br>
+                        <small>详细问题请发邮件，我们会认真回复</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <p class="lead">
+                    🌟 我们的承诺：真诚服务每一位茶友，让您的每一次购买都安心满意 🌟
+                </p>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Modal 3: 保修服务 -->
-<div class="modal fade" id="warrantyServiceModal" tabindex="-1" role="dialog" aria-labelledby="warrantyServiceModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="warrantyServiceModalLabel">保修服务</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>我们提供一年的保修服务。如果产品在保修期内出现任何质量问题，我们将免费为您维修或更换。</p>
-                <p>保修流程：</p>
-                <ol>
-                    <li>联系客户服务并提供您的订单号和问题描述。</li>
-                    <li>收到保修确认后，将产品寄回至指定地址。</li>
-                    <li>我们将在收到产品后5-7个工作日内处理维修或更换。</li>
-                </ol>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+function toggleFAQ(element) {
+    const answer = element.nextElementSibling;
+    const isOpen = answer.style.display === 'block';
+    
+    // 关闭所有其他FAQ
+    document.querySelectorAll('.faq-answer').forEach(item => {
+        item.style.display = 'none';
+    });
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // 切换当前FAQ
+    if (!isOpen) {
+        answer.style.display = 'block';
+        element.classList.add('active');
+    }
+}
+
+// 页面加载时默认展开第一个FAQ
+document.addEventListener('DOMContentLoaded', function() {
+    const firstFAQ = document.querySelector('.faq-question');
+    if (firstFAQ) {
+        toggleFAQ(firstFAQ);
+    }
+});
+</script>

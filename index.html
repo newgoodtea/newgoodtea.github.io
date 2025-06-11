@@ -2,62 +2,143 @@
 title: Home
 ---
 
-<!-- 样式和动画效果 -->
 <style>
+/* 现代化首页样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 全屏英雄区域 */
 .hero-section {
+    height: 100vh;
     background-image: url('assets/css/images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     position: relative;
-    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.hero-overlay {
+.hero-section::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
 
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="2" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="4" fill="white" opacity="0.1"/><circle cx="70" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="30" cy="60" r="3" fill="white" opacity="0.1"/></svg>');
+    animation: sparkle 20s infinite linear;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0px) rotate(360deg); }
+}
+
 .hero-content {
+    text-align: center;
+    color: white;
+    z-index: 10;
     position: relative;
-    z-index: 2;
-    max-width: 800px;
+    max-width: 1000px;
     padding: 0 20px;
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    font-size: 5.4rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.5s forwards;
 }
 
 .hero-subtitle {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1s forwards;
 }
 
-.hero-cta {
-    margin-top: 30px;
+.tea-highlight {
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.hero-cta .btn {
-    font-size: 1.2rem;
-    padding: 12px 30px;
-    margin: 0 10px;
-    border-radius: 25px;
+.china-highlight {
+    color: #dc3545;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.tea-green {
+    color: #28a745;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-buttons {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1.5s forwards;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 18px 48px;
+    margin: 10px 15px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+    border: 2px solid transparent;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.hero-btn.secondary {
+    background: transparent;
+    border: 2px solid white;
+}
+
+.hero-btn.secondary:hover {
+    background: white;
+    color: #333;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .scroll-indicator {
@@ -66,8 +147,9 @@ title: Home
     left: 50%;
     transform: translateX(-50%);
     color: white;
-    font-size: 2rem;
+    font-size: 2.4rem;
     animation: bounce 2s infinite;
+    cursor: pointer;
 }
 
 @keyframes bounce {
@@ -82,383 +164,794 @@ title: Home
     }
 }
 
-/* 内容区域暖色调背景 */
-.content-section {
+/* 特色区域 */
+.features-section {
+    padding: 100px 0;
+    background: #f8f9fa;
     position: relative;
-    background: linear-gradient(45deg, #ffeaa7, #fab1a0, #e17055);
-    min-height: 200vh;
-    overflow: hidden;
 }
 
-.content-wrapper {
-    position: relative;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 0;
-    margin: 0;
-}
-
-/* 主推产品标题样式 */
-.product-section-title {
+.section-title {
     text-align: center;
-    padding: 60px 0 40px 0;
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.product-section-title h1 {
-    font-size: 3.5rem;
-    color: #333;
-    margin: 0;
-    white-space: nowrap;
+    font-size: 4.2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
-/* 内容区域标题颜色统一 */
-.content-wrapper .text-center h1 {
-    color: #333 !important;
+.section-subtitle {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #6c757d;
+    margin-bottom: 80px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.content-wrapper .text-center h1 .tea-text {
-    color: #28a745 !important;
+.feature-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-top: 5px solid #28a745;
+    position: relative;
+    overflow: hidden;
 }
 
-.product-section-title h1 .tea-text {
-    color: #28a745 !important;
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.6s ease;
 }
 
-/* 落叶动画 - 增加数量和大小 */
-.falling-leaves {
+.feature-card:hover::before {
+    left: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+    font-size: 4rem;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.feature-title {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.feature-text {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* 产品展示区域 */
+.products-section {
+    padding: 100px 0;
+    background: white;
+    position: relative;
+}
+
+.product-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    border-top: 5px solid #28a745;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 30px;
+}
+
+.product-title {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.product-description {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-size: 1.2rem;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.product-btn {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.product-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    color: white;
+    text-decoration: none;
+}
+
+/* 选购更多茶叶卡片特殊样式 */
+.more-products {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-top: 5px solid #20c997;
+}
+
+.more-products .product-image {
+    position: relative;
+}
+
+.more-products .product-image::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(32, 201, 151, 0.1), rgba(23, 162, 184, 0.1));
+}
+
+.more-products .product-title {
+    color: #20c997;
+    font-size: 2rem;
+}
+
+.more-products .product-btn {
+    background: linear-gradient(45deg, #20c997, #17a2b8);
+}
+
+/* 茶园风光区域 */
+.gallery-section {
+    padding: 100px 0;
+    background: #f8f9fa;
+    position: relative;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.gallery-item {
+    position: relative;
     overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
 }
 
-.leaf {
-    position: absolute;
-    border-radius: 50% 0 50% 0;
-    animation: leafFall linear infinite;
-    opacity: 0.8;
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.15);
 }
 
-.leaf1 { left: 5%; width: 30px; height: 30px; background-color: #28a745; animation-duration: 8s; animation-delay: 0s; }
-.leaf2 { left: 12%; width: 25px; height: 25px; background-color: #17a2b8; animation-duration: 6s; animation-delay: 2s; }
-.leaf3 { left: 20%; width: 35px; height: 35px; background-color: #e83e8c; animation-duration: 10s; animation-delay: 1s; }
-.leaf4 { left: 28%; width: 28px; height: 28px; background-color: #28a745; animation-duration: 7s; animation-delay: 3s; }
-.leaf5 { left: 35%; width: 32px; height: 32px; background-color: #17a2b8; animation-duration: 9s; animation-delay: 1.5s; }
-.leaf6 { left: 42%; width: 26px; height: 26px; background-color: #e83e8c; animation-duration: 8s; animation-delay: 4s; }
-.leaf7 { left: 50%; width: 34px; height: 34px; background-color: #28a745; animation-duration: 11s; animation-delay: 0.5s; }
-.leaf8 { left: 58%; width: 29px; height: 29px; background-color: #17a2b8; animation-duration: 6s; animation-delay: 2.5s; }
-.leaf9 { left: 65%; width: 31px; height: 31px; background-color: #e83e8c; animation-duration: 9s; animation-delay: 1.2s; }
-.leaf10 { left: 72%; width: 27px; height: 27px; background-color: #28a745; animation-duration: 7s; animation-delay: 3.5s; }
-.leaf11 { left: 80%; width: 33px; height: 33px; background-color: #17a2b8; animation-duration: 8s; animation-delay: 0.8s; }
-.leaf12 { left: 87%; width: 30px; height: 30px; background-color: #e83e8c; animation-duration: 10s; animation-delay: 4.5s; }
-.leaf13 { left: 15%; width: 28px; height: 28px; background-color: #28a745; animation-duration: 9s; animation-delay: 2.8s; }
-.leaf14 { left: 45%; width: 32px; height: 32px; background-color: #17a2b8; animation-duration: 7s; animation-delay: 1.8s; }
-.leaf15 { left: 75%; width: 29px; height: 29px; background-color: #e83e8c; animation-duration: 8s; animation-delay: 3.8s; }
-
-@keyframes leafFall {
-    0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.8;
-    }
-    90% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(calc(100vh + 200px)) rotate(360deg);
-        opacity: 0;
-    }
+.gallery-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: all 0.3s ease;
 }
 
-/* 泡泡动画 - 增加数量和大小 */
-.bubbles {
+.gallery-item:hover .gallery-image {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: 40px 30px 30px;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-title {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.gallery-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* 现代化生产区域 */
+.production-section {
+    padding: 100px 0;
+    background: #f8f9fa;
+    position: relative;
+}
+
+.production-content {
+    margin-top: 60px;
+}
+
+.production-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.production-item {
+    background: white;
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.bubble {
+.production-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+}
+
+.production-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.production-item:hover .production-image {
+    transform: scale(1.05);
+}
+
+.production-info {
+    padding: 30px;
+}
+
+.production-title {
+    font-size: 1.7rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.production-description {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1.2rem;
+}
+
+.production-item::before {
+    content: '';
     position: absolute;
-    bottom: -50px;
-    border-radius: 50%;
-    animation: bubbleRise linear infinite;
-    opacity: 0.7;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #28a745, #20c997);
 }
 
-.bubble1 { left: 8%; width: 40px; height: 40px; background-color: #28a745; animation-duration: 6s; animation-delay: 0s; }
-.bubble2 { left: 16%; width: 35px; height: 35px; background-color: #17a2b8; animation-duration: 8s; animation-delay: 2s; }
-.bubble3 { left: 24%; width: 45px; height: 45px; background-color: #e83e8c; animation-duration: 7s; animation-delay: 1s; }
-.bubble4 { left: 32%; width: 38px; height: 38px; background-color: #28a745; animation-duration: 9s; animation-delay: 3s; }
-.bubble5 { left: 40%; width: 42px; height: 42px; background-color: #17a2b8; animation-duration: 6s; animation-delay: 1.5s; }
-.bubble6 { left: 48%; width: 36px; height: 36px; background-color: #e83e8c; animation-duration: 8s; animation-delay: 4s; }
-.bubble7 { left: 56%; width: 44px; height: 44px; background-color: #28a745; animation-duration: 7s; animation-delay: 0.5s; }
-.bubble8 { left: 64%; width: 39px; height: 39px; background-color: #17a2b8; animation-duration: 9s; animation-delay: 2.5s; }
-.bubble9 { left: 72%; width: 41px; height: 41px; background-color: #e83e8c; animation-duration: 6s; animation-delay: 1.2s; }
-.bubble10 { left: 80%; width: 37px; height: 37px; background-color: #28a745; animation-duration: 8s; animation-delay: 3.5s; }
-.bubble11 { left: 88%; width: 43px; height: 43px; background-color: #17a2b8; animation-duration: 7s; animation-delay: 0.8s; }
-.bubble12 { left: 12%; width: 34px; height: 34px; background-color: #e83e8c; animation-duration: 9s; animation-delay: 4.5s; }
-.bubble13 { left: 28%; width: 40px; height: 40px; background-color: #28a745; animation-duration: 6s; animation-delay: 2.8s; }
-.bubble14 { left: 52%; width: 38px; height: 38px; background-color: #17a2b8; animation-duration: 8s; animation-delay: 1.8s; }
-.bubble15 { left: 76%; width: 42px; height: 42px; background-color: #e83e8c; animation-duration: 7s; animation-delay: 3.8s; }
-
-@keyframes bubbleRise {
-    0% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.7;
-    }
-    90% {
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
+/* 品质保证区域 */
+.quality-section {
+    padding: 100px 0;
+    background: white;
+    text-align: center;
+    position: relative;
 }
 
+.quality-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quality-image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+    animation: float 6s ease-in-out infinite;
+}
+
+.quality-image:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.quality-title {
+    font-size: 3.8rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.quality-text {
+    font-size: 1.4rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.quality-btn {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.quality-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    color: #28a745;
+    text-decoration: none;
+}
+
+/* 统计数据区域 */
+.stats-section {
+    padding: 80px 0;
+    background: #2c3e50;
+    color: white;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 20px;
+}
+
+.stat-number {
+    font-size: 3.6rem;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.stat-label {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* 响应式设计 */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 3.6rem;
     }
+    
     .hero-subtitle {
+        font-size: 1.6rem;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .hero-btn {
+        display: block;
+        margin: 10px auto;
+        max-width: 280px;
+        font-size: 1.2rem;
+    }
+    
+    .product-showcase {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .production-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .production-title {
         font-size: 1.4rem;
     }
-    .product-section-title h1 {
-        font-size: 2.5rem;
+    
+    .production-description {
+        font-size: 1.1rem;
     }
+    
+    .feature-title {
+        font-size: 1.5rem;
+    }
+    
+    .feature-text {
+        font-size: 1.1rem;
+    }
+    
+    .product-title {
+        font-size: 1.6rem;
+    }
+    
+    .product-description {
+        font-size: 1.1rem;
+    }
+    
+    .quality-title {
+        font-size: 2.8rem;
+    }
+    
+    .quality-text {
+        font-size: 1.2rem;
+    }
+    
+    .gallery-title {
+        font-size: 1.4rem;
+    }
+    
+    .gallery-description {
+        font-size: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-number {
+        font-size: 2.8rem;
+    }
+    
+    .stat-label {
+        font-size: 1.1rem;
+    }
+}
+
+/* 滚动动画 */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
 }
 </style>
 
-<!-- Hero 区域 -->
-<div class="hero-section">
-    <div class="hero-overlay"></div>
+<!-- 英雄区域 -->
+<section class="hero-section">
     <div class="hero-content">
         <h1 class="hero-title">
-            我们的<span style="color: #337ab7;">愿景</span>是让世界品尝<span style="color: #d9534f;">中国</span>最好的<span style="color: #28a745;">茶叶</span>
+            探索<span class="china-highlight">中国</span>最优质的<span class="tea-green">茶叶</span>世界
         </h1>
-        <h3 class="hero-subtitle">
-            <span class="glyphicon glyphicon-leaf"></span> 欢迎来到 meme茶叶 官方网站
-        </h3>
-        <div class="hero-cta">
-            <a href="/products.html" class="btn btn-success btn-lg">
-                <span class="glyphicon glyphicon-leaf"></span> 探索茶叶产品
-            </a>
-            <a href="/Story.html" class="btn btn-primary btn-lg">
-                <span class="glyphicon glyphicon-tree-deciduous"></span> 了解我们的故事
-            </a>
+        <p class="hero-subtitle">
+            从传统工艺到现代品质，我们为您精选每一片茶叶的完美体验
+        </p>
+        <div class="hero-buttons">
+            <a href="/products.html" class="hero-btn">🍃 浏览茶叶产品</a>
+            <a href="/Story.html" class="hero-btn secondary">📖 了解我们的故事</a>
         </div>
     </div>
-    <div class="scroll-indicator">
-        <span class="glyphicon glyphicon-chevron-down"></span>
+    <div class="scroll-indicator" onclick="scrollToNext()">
+        ⬇️
     </div>
-</div>
+</section>
 
-<!-- 主要内容区域 -->
-<div class="content-section">
-    <!-- 落叶动画 - 增加到15片 -->
-    <div class="falling-leaves">
-        <div class="leaf leaf1"></div>
-        <div class="leaf leaf2"></div>
-        <div class="leaf leaf3"></div>
-        <div class="leaf leaf4"></div>
-        <div class="leaf leaf5"></div>
-        <div class="leaf leaf6"></div>
-        <div class="leaf leaf7"></div>
-        <div class="leaf leaf8"></div>
-        <div class="leaf leaf9"></div>
-        <div class="leaf leaf10"></div>
-        <div class="leaf leaf11"></div>
-        <div class="leaf leaf12"></div>
-        <div class="leaf leaf13"></div>
-        <div class="leaf leaf14"></div>
-        <div class="leaf leaf15"></div>
+<!-- 特色服务区域 -->
+<section class="features-section animate-on-scroll">
+    <div class="container">
+        <h2 class="section-title">为什么选择<span class="tea-highlight" style="color: #28a745;">我们</span></h2>
+        <p class="section-subtitle">
+            我们致力于为全球茶叶爱好者提供最优质的产品和服务体验
+        </p>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3 class="feature-title">原产地直供</h3>
+                    <p class="feature-text">
+                        直接来自中国各大茶叶产区的优质茶叶，确保每一片茶叶的正宗品质和新鲜度。
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">传统工艺</h3>
+                    <p class="feature-text">
+                        传承千年的制茶工艺，结合现代品控技术，为您呈现最地道的茶叶风味。
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">品质保证</h3>
+                    <p class="feature-text">
+                        严格的质量控制体系，每一批茶叶都经过专业品鉴师的精心挑选和品质认证。
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+
+<!-- 产品展示区域 -->
+<section class="products-section animate-on-scroll">
+    <div class="container">
+        <h2 class="section-title">精选<span class="tea-highlight" style="color: #28a745;">茶叶</span>产品</h2>
+        <p class="section-subtitle">
+            从绿茶到普洱，从白茶到红茶，满足您不同的品味需求
+        </p>
+        
+        <div class="product-showcase">
+            <div class="product-card">
+                <img src="assets/css/images/tea/green-tea.png" alt="天山绿茶" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">天山绿茶</h3>
+                    <p class="product-description">产于新疆天山山脉，海拔高，昼夜温差大，茶叶生长缓慢，内含物质丰富。</p>
+                    <div class="product-price">¥158/500g</div>
+                    <a href="/product/green-tea.html" class="product-btn">立即购买</a>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="assets/css/images/tea/red-tea.png" alt="金骏眉红茶" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">金骏眉红茶</h3>
+                    <p class="product-description">产于福建武夷山，选用高山茶树嫩芽为原料，经过精心制作而成。</p>
+                    <div class="product-price">¥298/500g</div>
+                    <a href="/product/red-tea.html" class="product-btn">立即购买</a>
+                </div>
+            </div>
+            
+            <div class="product-card more-products">
+                <img src="assets/css/images/company/tea-varieties.jpg" alt="选购更多茶叶" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">选购更多茶叶</h3>
+                    <p class="product-description">探索更多来自中国各大茶区的优质茶叶产品，找到最适合您口味的茶叶。</p>
+                    <div class="product-price">精选推荐</div>
+                    <a href="/products.html" class="product-btn">查看全部产品</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 茶园风光区域 -->
+<section class="gallery-section animate-on-scroll">
+    <div class="container">
+        <h2 class="section-title">壮美的<span class="tea-highlight" style="color: #28a745;">茶园</span>风光</h2>
+        <p class="section-subtitle">
+            感受来自原产地的自然美景
+        </p>
+        
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="assets/css/images/company/chayuan1.jpg" alt="茶园风光1" class="gallery-image">
+                <div class="gallery-overlay">
+                    <h4 class="gallery-title">高山茶园</h4>
+                    <p class="gallery-description">海拔千米的高山茶园，云雾缭绕，为茶叶提供了得天独厚的生长环境。</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="assets/css/images/company/chayuan2.jpg" alt="茶园风光2" class="gallery-image">
+                <div class="gallery-overlay">
+                    <h4 class="gallery-title">梯田茶园</h4>
+                    <p class="gallery-description">层层梯田式的茶园设计，充分利用山地地形，展现人与自然的和谐。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 现代化生产展示区域 -->
+<section class="production-section animate-on-scroll">
+    <div class="container">
+        <h2 class="section-title">现代化<span class="tea-highlight" style="color: #28a745;">生产</span>工艺</h2>
+        <p class="section-subtitle">
+            传统工艺与现代技术的完美结合，确保每一片茶叶的优质品质
+        </p>
+        
+        <div class="production-content">
+            <div class="production-grid">
+                <div class="production-item">
+                    <img src="assets/css/images/company/processing1.jpg" alt="传统工艺" class="production-image">
+                    <div class="production-info">
+                        <h3 class="production-title">传统制茶工艺</h3>
+                        <p class="production-description">传承千年的手工制茶技艺，每一个环节都凝聚着匠人的智慧和心血，确保茶叶的传统风味。</p>
+                    </div>
+                </div>
+                
+                <div class="production-item">
+                    <img src="assets/css/images/company/processing2.jpg" alt="现代设备" class="production-image">
+                    <div class="production-info">
+                        <h3 class="production-title">现代化设备</h3>
+                        <p class="production-description">采用先进的现代化生产设备，精确控制温度、湿度和时间，确保茶叶品质的稳定性。</p>
+                    </div>
+                </div>
+                
+                <div class="production-item">
+                    <img src="assets/css/images/company/quality-control.jpg" alt="品质检测" class="production-image">
+                    <div class="production-info">
+                        <h3 class="production-title">严格品质控制</h3>
+                        <p class="production-description">建立完善的品质检测体系，从原料到成品全程监控，确保每一批茶叶都达到最高标准。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 品质保证区域 -->
+<section class="quality-section animate-on-scroll">
+    <div class="container">
+        <div class="quality-content">
+            <img src="assets/css/images/company/quality.png" alt="品质保证" class="quality-image">
+            <h2 class="quality-title">品质承诺</h2>
+            <p class="quality-text">
+                我们承诺为全球客户提供最优质的茶叶产品和最专业的服务。
+                从茶园到茶杯，每一个环节都严格把控，只为让您品尝到最纯正的中国茶叶。
+            </p>
+            <a href="/Commitment.html" class="quality-btn">了解更多承诺</a>
+        </div>
+    </div>
+</section>
+
+<!-- 统计数据区域 -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number" data-target="50">0</span>
+                <div class="stat-label">茶园基地</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="100000">0</span>
+                <div class="stat-label">满意客户</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="200">0</span>
+                <div class="stat-label">茶叶品种</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="15">0</span>
+                <div class="stat-label">服务年限</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// 页面滚动动画
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.animate-on-scroll');
     
-    <!-- 泡泡动画 - 增加到15个 -->
-    <div class="bubbles">
-        <div class="bubble bubble1"></div>
-        <div class="bubble bubble2"></div>
-        <div class="bubble bubble3"></div>
-        <div class="bubble bubble4"></div>
-        <div class="bubble bubble5"></div>
-        <div class="bubble bubble6"></div>
-        <div class="bubble bubble7"></div>
-        <div class="bubble bubble8"></div>
-        <div class="bubble bubble9"></div>
-        <div class="bubble bubble10"></div>
-        <div class="bubble bubble11"></div>
-        <div class="bubble bubble12"></div>
-        <div class="bubble bubble13"></div>
-        <div class="bubble bubble14"></div>
-        <div class="bubble bubble15"></div>
-    </div>
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('animated');
+        }
+    });
+}
 
-    <div class="content-wrapper">
-        <!-- 主推产品标题 -->
-        <div class="product-section-title">
-            <h1 class="text-center">
-                我们的<span class="tea-text">主推产品</span>
-            </h1>
-        </div>
+// 滚动到下一个区域
+function scrollToNext() {
+    const nextSection = document.querySelector('.features-section');
+    nextSection.scrollIntoView({ behavior: 'smooth' });
+}
 
-        <!-- 轮播组件 -->
-        <div id="myCarousel" class="carousel slide">
-            <!-- 轮播（Carousel）指标 -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-                <li data-target="#myCarousel" data-slide-to="4"></li>
-            </ol>
-            <!-- 轮播（Carousel）项目 -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <a href="product/green-tea.html">
-                        <img src="assets/css/images/tea/green-tea.png" class="img-fluid" alt="天山绿茶" style="width: 1000px; height: 500px;">
-                    </a>
-                    <div class="carousel-caption">天山绿茶</div>
-                </div>
-                <div class="item">
-                    <a href="product/black-tea.html">
-                        <img src="assets/css/images/tea/red-tea.png" class="img-fluid" alt="金骏眉红茶" style="width: 1000px; height: 500px;">
-                    </a>
-                    <div class="carousel-caption">金骏眉红茶</div>
-                </div>
-                <div class="item">
-                    <a href="product/oolong-tea.html">
-                        <img src="assets/css/images/tea/biluochun.jpg" class="img-fluid" alt="碧螺春" style="width: 1000px; height: 500px;">
-                    </a>
-                    <div class="carousel-caption">碧螺春</div>
-                </div>
-                <div class="item">
-                    <a href="product/white-tea.html">
-                        <img src="assets/css/images/tea/white-tea.png" class="img-fluid" alt="寿眉白茶" style="width: 1000px; height: 500px;">
-                    </a>
-                    <div class="carousel-caption">寿眉白茶</div>
-                </div>
-                <div class="item">
-                    <a href="product/pu-erh-tea.html">
-                        <img src="assets/css/images/tea/puer.png" class="img-fluid" alt="普洱茶" style="width: 1000px; height: 500px;">
-                    </a>
-                    <div class="carousel-caption">陈年普洱</div>
-                </div>
-            </div>
-            <!-- 轮播（Carousel）导航 -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-        </div>
+// 数字动画
+function animateNumbers() {
+    const numbers = document.querySelectorAll('.stat-number');
+    
+    numbers.forEach(number => {
+        const target = parseInt(number.getAttribute('data-target'));
+        const increment = target / 100;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            number.textContent = Math.floor(current).toLocaleString();
+        }, 20);
+    });
+}
 
-        <!-- 轮播脚本 -->
-        <script>
-        $(function(){
-                // 初始化轮播
-                $(".start-slide").click(function(){
-                    $("#myCarousel").carousel('cycle');
-                });
-                // 停止轮播
-                $(".pause-slide").click(function(){
-                    $("#myCarousel").carousel('pause');
-                });
-                // 循环轮播到上一个项目
-                $(".prev-slide").click(function(){
-                    $("#myCarousel").carousel('prev');
-                });
-                // 循环轮播到下一个项目
-                $(".next-slide").click(function(){
-                    $("#myCarousel").carousel('next');
-                });
-                // 循环轮播到某个特定的帧
-                $(".slide-one").click(function(){
-                    $("#myCarousel").carousel(0);
-                });
-                $(".slide-two").click(function(){
-                    $("#myCarousel").carousel(1);
-                });
-                $(".slide-three").click(function(){
-                    $("#myCarousel").carousel(2);
-                });
-            });
-        </script>
-
-        <!-- 正文信息 -->
-        <div class="text-center">
-            <h1 class="text-center" style="white-space: nowrap;">
-                丰富多样的<span class="tea-text">茶叶</span>品类满足全球需求
-            </h1>
-            <a href="/products.html">了解更多茶叶产品</a>
-            <div class="panel-body" style="padding: 30px 150px;">
-                <img src="assets/css/images/company/tea-varieties.jpg" class="img-rounded" style="width: 50%; height: auto;">
-            </div>
-            
-            <!-- 茶园风光部分 -->
-            <h1 class="text-center" style="white-space: nowrap;">
-                壮美的<span class="tea-text">茶园</span>风光
-            </h1>
-            <a href="/Story.html">了解我们的故事</a>
-            <div class="panel-body" style="padding: 30px 150px; display: flex; justify-content: space-between;">
-                <img src="assets/css/images/company/chayuan1.jpg" class="img-rounded" style="width: 48%; height: auto;">
-                <img src="assets/css/images/company/chayuan2.jpg" class="img-rounded" style="width: 48%; height: auto;">
-            </div>
-            
-            <h1 class="text-center" style="white-space: nowrap;">
-                传统工艺与现代技术完美结合
-            </h1>
-            <div class="panel-body" style="padding: 30px 150px; display: flex; justify-content: space-between;">
-                <img src="assets/css/images/company/processing1.jpg" class="img-rounded" style="width: 48%; height: auto;">
-                <img src="assets/css/images/company/processing2.jpg" class="img-rounded" style="width: 48%; height: auto;">
-            </div>
-            <h1 class="text-center" style="white-space: nowrap;">
-               现代化的<span class="tea-text">茶叶</span>加工生产线
-            </h1>
-
-            <div class="panel-body" style="padding: 30px 150px;">
-                <img src="assets/css/images/company/quality-control.jpg" class="img-rounded">
-            </div>
-            <h1 class="text-center" style="white-space: nowrap;">
-                为全球客户提供品质保障
-            </h1>
-            <a href="/Commitment.html">了解品质承诺</a>
-            
-            <!-- 新增品质保证图片 -->
-            <div class="panel-body" style="padding: 30px 150px;">
-                <img src="assets/css/images/company/quality.png" class="img-rounded" style="width: 50%; height: auto;">
-            </div>
-        </div>
-
-        <!-- 网页后缀 -->
-        <div class="container">
-            <div class="jumbotron">
-                <p>meme茶叶 - 中国优质茶叶出口商</p>
-                <p>公司地址：中国云南省昆明市呈贡区云南大学</p>
-                <p>国际贸易热线：+86-591-88888888 | 邮箱：1715173370@qq.com</p>
-                <p>PhoneNumber: +86-138-0000-0000 | WeChat: memetea2024</p>
-                <a class="btn btn-default btn-lg" href="/products.html" role="button" style="margin-right: 20px;"><span class="glyphicon glyphicon-leaf"></span> 茶叶产品</a>
-                <a class="btn btn-default btn-lg" href="/Story.html" role="button" style="margin-right: 20px;"><span class="glyphicon glyphicon-tree-deciduous"></span> 企业文化</a>
-                <a class="btn btn-default btn-lg" href="/JoinUs.html" role="button" style="margin-right: 20px;"><span class="glyphicon glyphicon-globe"></span> 合作伙伴</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+// 页面加载完成后执行
+window.addEventListener('load', () => {
+    animateOnScroll();
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // 当统计区域进入视窗时启动数字动画
+    const statsSection = document.querySelector('.stats-section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateNumbers();
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    observer.observe(statsSection);
+});
+</script>
