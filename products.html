@@ -8,8 +8,8 @@ body, .products-background {
     animation: fadeIn 1.2s ease;
 }
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* 产品页面背景样式 - 淡色系 */
@@ -73,9 +73,28 @@ body, .products-background {
     border: 1.5px solid rgba(40, 167, 69, 0.08);
     position: relative;
     overflow: visible;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(.22,.61,.36,1);
 }
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    border-radius: 22px;
+    z-index: 1;
+    pointer-events: none;
+}
+
 .product-card:hover {
-    transform: translateY(-12px) scale(1.025);
+    transform: translateY(-12px) scale(1.025) rotateX(2deg);
     box-shadow: 0 32px 64px rgba(40, 167, 69, 0.18), 0 4px 16px rgba(0,0,0,0.08);
 }
 
@@ -85,7 +104,27 @@ body, .products-background {
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(40, 167, 69, 0.13);
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(.22,.61,.36,1);
 }
+
+.product-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(40,167,69,0.2) 0%, rgba(40,167,69,0) 100%);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.product-image-container:hover::before {
+    opacity: 1;
+}
+
 .product-image-container img {
     transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
     width: 100%;
@@ -93,10 +132,16 @@ body, .products-background {
     object-fit: cover;
     filter: brightness(1.05) saturate(1.1);
 }
+
+.product-card:hover .product-image-container {
+    transform: translateZ(20px);
+}
+
 .product-card:hover .product-image-container img {
     transform: scale(1.08) rotate(-1deg);
     filter: brightness(1.12) saturate(1.2);
 }
+
 /* 图片渐变遮罩 */
 .product-image-container::after {
     content: "";
@@ -107,7 +152,16 @@ body, .products-background {
     z-index: 2;
 }
 
-/* 产品信息样式 - 调大字体 */
+/* 产品信息样式 */
+.product-info {
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
+}
+
+.product-card:hover .product-info {
+    transform: translateZ(30px);
+}
+
 .product-info h2 {
     color: #218838;
     font-weight: bold;
@@ -115,19 +169,38 @@ body, .products-background {
     font-size: 2.8rem;
     letter-spacing: 1px;
     text-shadow: 0 2px 8px rgba(40,167,69,0.07);
+    transition: all 0.3s ease;
 }
+
+.product-card:hover .product-info h2 {
+    transform: translateZ(40px);
+    text-shadow: 0 4px 12px rgba(40,167,69,0.12);
+}
+
 .product-info p {
     color: #34495e;
     line-height: 1.8;
     font-size: 1.4rem;
     margin-bottom: 15px;
+    transition: all 0.3s ease;
 }
+
+.product-card:hover .product-info p {
+    transform: translateZ(20px);
+}
+
 .product-price {
     font-size: 1.8rem;
     font-weight: bold;
     color: #e74c3c;
     margin: 20px 0;
     letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .product-price {
+    transform: translateZ(25px);
+    text-shadow: 0 2px 8px rgba(231,76,60,0.15);
 }
 
 /* 按钮样式 */
@@ -145,7 +218,9 @@ body, .products-background {
     box-shadow: 0 5px 18px rgba(40, 167, 69, 0.18);
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
 }
+
 .btn-tea-buy::before {
     content: "";
     position: absolute;
@@ -154,66 +229,157 @@ body, .products-background {
     transition: left 0.4s cubic-bezier(.22,.61,.36,1);
     z-index: 1;
 }
+
+.btn-tea-buy::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    border-radius: 25px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
 .btn-tea-buy:hover::before {
     left: 100%;
 }
+
+.btn-tea-buy:hover::after {
+    opacity: 1;
+}
+
 .btn-tea-buy:hover {
-    transform: translateY(-3px) scale(1.04);
+    transform: translateY(-3px) scale(1.04) translateZ(20px);
     box-shadow: 0 10px 32px rgba(40, 167, 69, 0.22);
     color: #fff;
     text-decoration: none;
 }
 
-/* 标题样式 - 更大字体 */
+/* 标题样式 */
 .page-title {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 60px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+    animation: slideDown 1s ease;
 }
+
+@keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
 .page-title h1 {
     font-size: 4.5rem;
     font-weight: bold;
     margin-bottom: 25px;
     color: #218838;
     letter-spacing: 2px;
+    text-shadow: 0 4px 12px rgba(40,167,69,0.12);
 }
+
 .page-title .tea-highlight {
     color: #20c997;
     text-shadow: 0 2px 8px rgba(40,167,69,0.09);
+    position: relative;
+    display: inline-block;
 }
+
+.page-title .tea-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #28a745, #20c997);
+    border-radius: 3px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.page-title:hover .tea-highlight::after {
+    transform: scaleX(1);
+}
+
 .page-title p {
     font-size: 1.5rem;
     color: #6c757d;
     font-weight: 300;
 }
 
-/* 响应式设计 - 手机端也相应调整 */
+/* 响应式设计 */
 @media (max-width: 768px) {
     .product-card {
         margin: 22px 0;
         padding: 14px 8px 18px 8px;
+        transform: none !important;
     }
+    
+    .product-card:hover {
+        transform: translateY(-8px) !important;
+    }
+    
     .page-title h1 {
         font-size: 2.2rem;
     }
+    
     .page-title p {
         font-size: 1.1rem;
     }
+    
     .product-info h2 {
         font-size: 1.3rem;
     }
+    
     .product-info p {
         font-size: 1.05rem;
     }
+    
     .product-price {
         font-size: 1.1rem;
     }
+    
     .product-image-container img {
         height: 180px;
     }
+    
+    .btn-tea-buy {
+        padding: 10px 24px;
+        font-size: 1rem;
+    }
+}
+
+/* 添加滚动动画 */
+.product-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.product-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+});
+</script>
 
 <div class="products-background">
     <!-- 背景装饰元素 -->
