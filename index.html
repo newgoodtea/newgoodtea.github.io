@@ -52,6 +52,17 @@ title: Home
     100% { transform: translateY(0px) rotate(360deg); }
 }
 
+/* 英雄区下方波浪 */
+.hero-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
 .hero-content {
     text-align: center;
     color: white;
@@ -111,20 +122,33 @@ title: Home
     transition: all 0.3s ease;
     box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
     border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
 }
-
+.hero-btn::before {
+    content: '';
+    position: absolute;
+    left: -60%;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg,rgba(255,255,255,0.18),rgba(255,255,255,0));
+    transition: left 0.4s cubic-bezier(.22,.61,.36,1);
+    z-index: 1;
+}
+.hero-btn:hover::before {
+    left: 100%;
+}
 .hero-btn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.04);
     box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
     color: white;
     text-decoration: none;
 }
-
 .hero-btn.secondary {
     background: transparent;
     border: 2px solid white;
 }
-
 .hero-btn.secondary:hover {
     background: white;
     color: #333;
@@ -167,8 +191,9 @@ title: Home
 /* 特色区域 */
 .features-section {
     padding: 100px 0;
-    background: #f8f9fa;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
+    border-bottom: 2px solid #e9ecef;
 }
 
 .section-title {
@@ -177,6 +202,8 @@ title: Home
     color: #2c3e50;
     margin-bottom: 20px;
     font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(40,167,69,0.07);
 }
 
 .section-subtitle {
@@ -198,10 +225,10 @@ title: Home
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     border-top: 5px solid #28a745;
+    border-image: linear-gradient(90deg, #28a745, #20c997) 1;
     position: relative;
     overflow: hidden;
 }
-
 .feature-card::before {
     content: '';
     position: absolute;
@@ -212,14 +239,13 @@ title: Home
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
     transition: all 0.6s ease;
 }
-
 .feature-card:hover::before {
     left: 100%;
 }
-
 .feature-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.03) rotateX(2deg);
     box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+    border-top: 5px solid #20c997;
 }
 
 .feature-icon {
@@ -586,89 +612,70 @@ title: Home
 /* 响应式设计 */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 3.6rem;
+        font-size: 2.5rem;
     }
-    
     .hero-subtitle {
-        font-size: 1.6rem;
+        font-size: 1.1rem;
     }
-    
     .section-title {
-        font-size: 3rem;
+        font-size: 2rem;
     }
-    
     .section-subtitle {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
-    
+    .feature-card {
+        padding: 20px 10px;
+    }
     .hero-btn {
-        display: block;
-        margin: 10px auto;
-        max-width: 280px;
-        font-size: 1.2rem;
+        padding: 10px 20px;
+        font-size: 1rem;
     }
-    
     .product-showcase {
         grid-template-columns: 1fr;
     }
-    
     .image-gallery {
         grid-template-columns: 1fr;
     }
-    
     .production-grid {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
     .production-title {
         font-size: 1.4rem;
     }
-    
     .production-description {
         font-size: 1.1rem;
     }
-    
     .feature-title {
         font-size: 1.5rem;
     }
-    
     .feature-text {
         font-size: 1.1rem;
     }
-    
     .product-title {
         font-size: 1.6rem;
     }
-    
     .product-description {
         font-size: 1.1rem;
     }
-    
     .quality-title {
         font-size: 2.8rem;
     }
-    
     .quality-text {
         font-size: 1.2rem;
     }
-    
     .gallery-title {
         font-size: 1.4rem;
     }
-    
     .gallery-description {
         font-size: 1rem;
     }
-    
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
     .stat-number {
         font-size: 2.8rem;
     }
-    
     .stat-label {
         font-size: 1.1rem;
     }
@@ -677,11 +684,10 @@ title: Home
 /* 滚动动画 */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
+    transform: translateY(40px);
+    transition: all 0.7s cubic-bezier(.22,.61,.36,1);
 }
-
-.animate-on-scroll.animated {
+.animate-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -704,6 +710,7 @@ title: Home
     <div class="scroll-indicator" onclick="scrollToNext()">
         ⬇️
     </div>
+    <svg class="hero-wave" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#f8f9fa" fill-opacity="1" d="M0,64L48,74.7C96,85,192,107,288,117.3C384,128,480,128,576,117.3C672,107,768,85,864,74.7C960,64,1056,64,1152,80C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
 </section>
 
 <!-- 特色服务区域 -->
@@ -903,7 +910,7 @@ function animateOnScroll() {
         const elementVisible = 150;
         
         if (elementTop < window.innerHeight - elementVisible) {
-            element.classList.add('animated');
+            element.classList.add('visible');
         }
     });
 }
