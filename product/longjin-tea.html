@@ -1,0 +1,68 @@
+---
+layout: product
+title: 龙井茶
+---
+
+<div style="display:flex;height:100%;overflow:hidden;">
+    <div style="flex:1;padding-top: 20px;margin-right: 10px;position: relative;display: flex;flex-direction: column;">
+        <div style="flex: 1;overflow-y:scroll;">
+            <div class="page-header glass-h1 text-center">龙井绿茶</div>
+            龙井茶素以色翠、形美、香郁、味醇冠绝天下，其独特的“淡而远”“香而清”的绝世神采和非凡品质，在众多茗茶中独具一格，冠列中国十大名茶之首。
+            
+            <div class="glass-title">产地介绍</div>
+            龙井茶产区分为西湖产区、钱塘产区和越州产区。西湖产区范围为杭州市西湖区（西湖风景名胜区），钱塘产区范围为除西湖产区外的杭州市下辖龙井茶生产县（市、区），其他龙井茶生产县（市、区）为越州产区范围。
+            
+            <div class="glass-title">制作工艺</div>
+            龙井茶采摘有三大特点：一早，二嫩，三勤。茶农常说，“茶叶是个时辰草，早采三天是个宝，迟采三天变成草。”龙井茶还以采摘细嫩而著称，鲜叶嫩匀度构成龙井茶品质的基础。勤是指采大留小分批采摘，全年采摘在30批左右。传统的龙井炒制有十大手法：抛、抖、搭、煽、搨、甩、抓、推、扣和压磨，不同品质的茶叶又有不同的炒制手法。由于产地生态条件和炒制技术的差别，西湖龙井向有“狮”“龙”“云”“虎”“梅”五个品类之别。
+            
+            <div class="glass-title">品鉴特点</div>
+            春茶中的特级西湖龙井、浙江龙井外形扁平光滑，苗锋尖削，芽长于叶，色泽嫩绿，体表无茸毛；汤色嫩绿（黄）明亮；清香或嫩栗香，但有部分茶带高火香；滋味清爽或浓醇；叶底嫩绿，尚完整。其余各级龙井茶随着级别的下降，外形色泽由嫩绿一青绿一墨绿，茶身由小到大，茶条由光滑至粗糙条索紧细，色泽翠绿，白毫显露。冲泡后茶汤清澈明亮，呈嫩绿色。香气清雅持久，具有独特的高山茶香。滋味鲜醇甘甜，回味悠长。叶底嫩绿匀整，富有光泽。是绿茶中的上品，深受茶叶爱好者喜爱。
+            
+            <div class="glass-title">冲泡方法</div>
+            水温：80-85℃为宜，避免沸水直冲。茶量：茶水比例约1:50。冲泡时间：第一泡30秒，后续每泡递增10-15秒。冲泡次数：可连续冲泡4-6次。使用玻璃杯或白瓷杯冲泡，便于观赏茶汤色泽和茶叶舒展。
+        </div>
+        <div class="glass-buy-container">
+            <p><strong>价格：</strong> ¥158/500g</p>
+            <button class="btn btn-success" onclick="showContactModal()">立即购买</button>
+        </div>
+    </div>
+    <div class="gallery" style="flex: 1; display: flex; flex-direction: column; height: 100%; gap: 10px;">
+        <img src="/assets/css/images/tea/longjing-tea-detail1.png" style="flex: 1; width: 100%; object-fit: cover; border-radius: 8px;" />
+        <img src="/assets/css/images/tea/longjing-tea-detail2.png" style="flex: 1; width: 100%; object-fit: cover; border-radius: 8px;" />
+    </div>
+</div>
+
+<!-- 购买联系弹窗 -->
+<div id="contactModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+    <div class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px; border-radius: 10px; width: 400px; position: relative;">
+        <span class="close" onclick="hideContactModal()" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; position: absolute; right: 15px; top: 10px;">&times;</span>
+        <h3 style="color: #28a745; text-align: center; margin-bottom: 20px;">联系购买</h3>
+        <div style="text-align: center; padding: 20px;">
+            <p style="font-size: 18px; margin-bottom: 20px;">请联系客服进行购买</p>
+            <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p><strong>客服微信：</strong> meme-tea-service</p>
+                <p><strong>客服电话：</strong> 400-666-8888</p>
+                <p><strong>客服邮箱：</strong> 1715173370@qq.com</p>
+            </div>
+            <p style="color: #666; font-size: 14px;">工作时间：周一至周日 9:00-18:00</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function showContactModal() {
+    document.getElementById('contactModal').style.display = 'block';
+}
+
+function hideContactModal() {
+    document.getElementById('contactModal').style.display = 'none';
+}
+
+// 点击弹窗外部关闭
+window.onclick = function(event) {
+    var modal = document.getElementById('contactModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+</script> 
